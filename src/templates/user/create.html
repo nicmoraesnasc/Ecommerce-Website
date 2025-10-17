@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro</title>
+</head>
+<body class="create-page">
+  <div class="register-container">
+    <form action="{{ url_for('create_user') }}" method="post" id="register-form" novalidate>
+      <div class="form-header">
+        <h1>CRIE SUA CONTA</h1>
+      </div>
+
+      <div class="form-body">
+
+        <div class="form-create">
+          <label for="name">Nome: *</label>
+          <input type="text" name="name" id="name" required />
+          <div class="error-message" id="name-error"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="last_name">Sobrenome: *</label>
+          <input type="text" name="last_name" id="last_name" required />
+          <div class="error-message" id="last_name-error"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="email">E-mail: *</label>
+          <input type="email" name="email" id="email" required />
+          <div class="error-message" id="email-error"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="phone">Telefone: *</label>
+          <input type="text" name="phone" id="phone" required pattern="[0-9]{10,11}" />
+          <div class="error-message" id="phone-error"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="zip-code">CEP: *</label>
+          <input type="text" name="zip-code" id="zip-code" required pattern="[0-9]{8}" />
+          <div class="error-message" id="zip-code-error"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="state">Estado: *</label>
+          <select name="state" id="state" required>
+            <option value="">Selecione...</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+            <option value="DF">Distrito Federal</option>
+          </select>
+          <div class="error-message" id="state-error"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="city">Cidade: *</label>
+          <input type="text" name="city" id="city" required />
+          <div class="error-message" id="city-error"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="password">Senha: *</label>
+          <div class="password-wrapper" style="position:relative;">
+            <input type="password" name="password" id="password" required minlength="6" style="padding-right: 35px;" />
+            <button type="button" class="toggle-password" onclick="togglePassword('password', this)" 
+                    style="position:absolute; right:8px; top:50%; transform: translateY(-50%); border:none; background:none; cursor:pointer; padding:0;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="#888" viewBox="0 0 24 24">
+                <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 110-10 5 5 0 010 10z"/>
+                <circle cx="12" cy="12" r="2.5"/>
+              </svg>
+            </button>
+          </div>
+          <div class="error-message" id="password-error" style="display:none;color:red;"></div>
+        </div>
+
+        <div class="form-create">
+          <label for="password_c">Confirme sua senha: *</label>
+          <div class="password-wrapper" style="position:relative;">
+            <input type="password" name="password_c" id="password_c" required style="padding-right: 35px;" />
+            <button type="button" class="toggle-password" onclick="togglePassword('password_c', this)" 
+                    style="position:absolute; right:8px; top:50%; transform: translateY(-50%); border:none; background:none; cursor:pointer; padding:0;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="#888" viewBox="0 0 24 24">
+                <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 110-10 5 5 0 010 10z"/>
+                <circle cx="12" cy="12" r="2.5"/>
+              </svg>
+            </button>
+          </div>
+          <div class="error-message" id="password_c-error" style="display:none;color:red;"></div>
+        </div>
+
+        <div class="form-footer">
+          <button type="submit" class="button-login2">Registrar</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (input.type === "password") {
+        input.type = "text";
+        btn.querySelector('svg').setAttribute('fill', '#000');
+      } else {
+        input.type = "password";
+        btn.querySelector('svg').setAttribute('fill', '#888');
+      }
+    }
+
+    document.getElementById('register-form').addEventListener('submit', function (e) {
+      let valid = true;
+
+      const requiredFields = [
+        'name',
+        'last_name',
+        'email',
+        'phone',
+        'zip-code',
+        'state',
+        'city',
+        'password',
+        'password_c',
+      ];
+
+      requiredFields.forEach((field) => {
+        const element = document.getElementById(field);
+        const errorElement = document.getElementById(`${field}-error`);
+
+        if (!element.value.trim()) {
+          errorElement.textContent = 'Este campo é obrigatório';
+          errorElement.style.display = 'block';
+          valid = false;
+        } else {
+          errorElement.textContent = '';
+          errorElement.style.display = 'none';
+        }
+      });
+
+      const password = document.getElementById('password');
+      const passwordConfirm = document.getElementById('password_c');
+      const passwordError = document.getElementById('password_c-error');
+
+      if (password.value && passwordConfirm.value && password.value !== passwordConfirm.value) {
+        passwordError.textContent = 'As senhas não coincidem';
+        passwordError.style.display = 'block';
+        valid = false;
+      }
+
+      const email = document.getElementById('email');
+      const emailError = document.getElementById('email-error');
+      if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        emailError.textContent = 'Por favor, insira um email válido';
+        emailError.style.display = 'block';
+        valid = false;
+      }
+
+      if (!valid) {
+        e.preventDefault();
+      }
+    });
+
+    document.querySelectorAll('#register-form input, #register-form select').forEach((input) => {
+      input.addEventListener('input', function () {
+        const errorElement = document.getElementById(`${this.id}-error`);
+        if (errorElement) {
+          errorElement.textContent = '';
+          errorElement.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
