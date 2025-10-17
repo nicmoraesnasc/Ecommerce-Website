@@ -40,6 +40,14 @@ class Database:
             is_admin TINYINT
         );
         """)
+    
+    self.mycursor.execute("""
+        CREATE TABLE IF NOT EXISTS About (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255),
+            content TEXT
+        );
+        """)
 
     self.mycursor.execute("""
         CREATE TABLE IF NOT EXISTS Product (
@@ -539,3 +547,56 @@ class Database:
   def select_user_by_email(self, email):
         self.mycursor.execute("SELECT * FROM User WHERE email = %s", (email,))
         return self.mycursor.fetchall()
+
+  def get_about(self):
+    print("=== DEBUG GET_ABOUT ===")
+    try:
+        self.mycursor.execute("SELECT * FROM About")
+        row = self.mycursor.fetchone()
+        print(f"Row from DB: {row}")
+        
+        if row:
+            result = {'id': row[0], 'title': row[1], 'content': row[2]}
+            print(f"Returning: {result}")
+            return result
+        else:
+            print("No row found in About table")
+            return None
+    except Exception as e:
+        print(f"Error in get_about: {e}")
+        return None
+
+  def set_about(self, title, content):
+    print(f"=== DEBUG SET_ABOUT ===")
+    print(f"Received - Title: '{title}', Content: '{content}'")
+    
+    try:
+        # Verifica se existe algum registro
+        self.mycursor.execute("SELECT COUNT(*) FROM About")
+        count = self.mycursor.fetchone()[0]
+        print(f"Current rows in About: {count}")
+        
+        if count == 0:
+            print("Doing INSERT...")
+            self.mycursor.execute(
+                "INSERT INTO About (id, title, content) VALUES (1, %s, %s)",
+                (title, content)
+            )
+        else:
+            print("Doing UPDATE...")
+            self.mycursor.execute(
+                "UPDATE About SET title = %s, content = %s WHERE id = 1",
+                (title, content)
+            )
+        
+        self.mydb.commit()
+        print("Commit successful!")
+        
+        # Verifica se realmente salvou
+        self.mycursor.execute("SELECT * FROM About")
+        saved_row = self.mycursor.fetchone()
+        print(f"After save - Row: {saved_row}")
+        
+    except Exception as e:
+        print(f"Error in set_about: {e}")
+        self.mydb.rollback()

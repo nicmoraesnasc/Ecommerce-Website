@@ -50,6 +50,41 @@ def index():
     
     return redirect(url_for('products'))
 
+@app.route('/about')
+def about():
+    print("=== DEBUG ABOUT ROUTE ===")
+    info = database.get_about()
+    print(f"Info for template: {info}")
+    
+    if not info:
+        info = {'title': 'Sem título', 'content': 'Sem conteúdo'}
+        print("Using default info")
+    
+    return render_template('about/index.html', info=info, is_admin=database.is_admin(session.get('user_id', 0)))
+
+@app.route('/about/edit', methods=['GET', 'POST'])
+def about_edit():
+    user_id = session.get('user_id', 0)
+    print(f"=== DEBUG ABOUT_EDIT ===")
+    print(f"User ID: {user_id}, Is Admin: {database.is_admin(user_id)}")
+    
+    if not database.is_admin(user_id):
+        flash("Acesso negado.", "error")
+        return redirect(url_for('about'))
+
+    info = database.get_about()
+    print(f"Info from DB: {info}")
+
+    if request.method == 'POST':
+        titulo = request.form['title']
+        conteudo = request.form['content']
+        print(f"Form data - Title: '{titulo}', Content: '{conteudo}'")
+        
+        database.set_about(titulo, conteudo)
+        flash('Seção "Sobre" atualizada com sucesso!', 'success')
+        return redirect(url_for('about'))
+
+    return render_template('about/edit.html', info=info or {'title': '', 'content': ''})
 
 @app.route('/login', methods=['GET','POST'])
 def login():

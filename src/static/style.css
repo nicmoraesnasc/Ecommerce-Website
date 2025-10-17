@@ -8,26 +8,26 @@
   }
 
 :root {
-    --neon-purple: #9d00ff;
-    --neon-pink: #ff00ff;
+    --neon-red: #ff0022;
+    --dark-red: #831313;
     --neon-dark: #0a0a0a;
     --neon-darker: #050505;
     --neon-text: #f0f0f0;
-    --neon-glow: 0 0 10px rgba(157, 0, 255, 0.7),
-                 0 0 20px rgba(157, 0, 255, 0.5),
-                 0 0 30px rgba(157, 0, 255, 0.3);
+    --neon-glow: 0 0 10px rgba(255, 0, 0, 0.7),
+                 0 0 20px rgba(255, 0, 0, 0.5),
+                 0 0 30px rgba(255, 0, 0, 0.3);
   }
   
   
   a {
-    color: var(--neon-purple);
+    color: var(--neon-red);
     text-decoration: none;
     transition: all 0.3s;
   }
   
   a:hover {
-    color: var(--neon-pink);
-    text-shadow: 0 0 8px var(--neon-pink);
+    color: var(--dark-red);
+    text-shadow: 0 0 8px var(--dark-red);
   }
 
   .header-div {
@@ -39,8 +39,8 @@
     gap: 10px;
     justify-content: flex-start; /* Alinha os itens à esquerda */
     align-items: center;
-    border-bottom: 2px solid var(--neon-purple);
-    box-shadow: 0 0 20px rgba(157, 0, 255, 0.3);
+    border-bottom: 2px solid var(--neon-red);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
     position: fixed;
     top: 0;
     left: 0;
@@ -61,8 +61,8 @@
   
 .header-div button {
     padding: 8px 15px;
-    background: rgba(157, 0, 255, 0.2);
-    border: 1px solid var(--neon-purple);
+    background: rgba(173, 9, 9, 0.2);
+    border: 1px solid var(--neon-red);
     color: var(--neon-text);
     border-radius: 4px;
     transition: all 0.3s;
@@ -70,14 +70,14 @@
 }
   
 .header-div button:hover {
-    background: var(--neon-purple);
-    box-shadow: 0 0 15px var(--neon-purple);
+    background: var(--neon-red);
+    box-shadow: 0 0 15px var(--neon-red);
 }
 
 .header-h1 {
   font-family: 'UnifrakturCook', cursive;
-  color: #ec6df7;
-  text-shadow: 0 0 8px #cba3f3;
+  color: #f76d6d;
+  text-shadow: 0 0 8px #f3a3a3;
   font-weight: 700;
   margin: 0;
   text-align: center; /* centraliza o texto */
@@ -106,7 +106,7 @@
 
 .login-title {
     font-family: 'UnifrakturCook', cursive;
-    color: #b366ff;
+    color: #ff6666;
     font-size: 36px;
     font-weight: bold;
     margin: 0;
@@ -116,6 +116,7 @@
   font-size: 22px; /* maior para Adorn Saturn */
   margin-top: -20px;
   margin-left: -280px;
+  color: white;
 }
 
 .title-sub {
@@ -123,6 +124,7 @@
   margin-top: -30px;
   margin-bottom: -20px;
   margin-left: -280px;
+  color: white;
 }
   
 .flash-messages {
@@ -155,7 +157,7 @@ border-left: 3px solid #f00;
 
 .form-group label {
 display: block;
-color: var(--neon-purple);
+color: var(--neon-text);
 font-weight: bold;
 padding: 20px;
 }
@@ -166,7 +168,7 @@ padding: 20px;
 width: 100%;
 padding: 10px;
 background: rgba(255, 255, 255, 0.05);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 border-radius: 4px;
 color: var(--neon-text);
 justify-self: center;
@@ -176,8 +178,8 @@ justify-self: center;
 .form-group select:focus,
 .form-group textarea:focus {
 outline: none;
-border-color: var(--neon-pink);
-box-shadow: 0 0 10px var(--neon-pink);
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
 }
 
 .form-group2 {
@@ -199,7 +201,7 @@ box-shadow: 0 0 10px var(--neon-pink);
 
 .form-group2 label {
 display: block;
-color: var(--neon-purple);
+color: var(--neon-text);
 font-weight: bold;
 padding: 20px;
 width: 50%
@@ -211,7 +213,7 @@ width: 50%
 width: 100%;
 padding: 10px;
 background: rgba(255, 255, 255, 0.05);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 border-radius: 4px;
 color: var(--neon-text);
 justify-self: center;
@@ -221,8 +223,8 @@ justify-self: center;
 .form-group2 select:focus,
 .form-group2 textarea:focus {
 outline: none;
-border-color: var(--neon-pink);
-box-shadow: 0 0 10px var(--neon-pink);
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
 }
 
 .form-group-image {
@@ -236,7 +238,7 @@ box-shadow: 0 0 10px var(--neon-pink);
 display: flex;
 flex-direction: column;
 justify-content: center;
-color: var(--neon-purple);
+color: var(--neon-text);
 font-weight: bold;
 padding: 20px;
 width: 50%
@@ -248,7 +250,7 @@ width: 50%
 width: 100%;
 padding: 10px;
 background: rgba(255, 255, 255, 0.05);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 border-radius: 4px;
 color: var(--neon-text);
 justify-self: center;
@@ -258,8 +260,40 @@ justify-self: center;
 .form-group-image select:focus,
 .form-group-image textarea:focus {
 outline: none;
-border-color: var(--neon-pink);
-box-shadow: 0 0 10px var(--neon-pink);
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-group3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group3 label {
+display: block;
+color: var(--neon-text);
+font-weight: bold;
+}
+
+.form-group3 input,
+.form-group3 select,
+.form-group3 textarea {
+width: 100%;
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+.form-group3 input:focus,
+.form-group3 select:focus,
+.form-group3 textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
 }
 
 .form-manage {
@@ -298,7 +332,7 @@ box-shadow: 0 0 10px var(--neon-pink);
   white-space: nowrap;
   flex: 2;
   font-weight: bold;
-  color: var(--neon-purple);
+  color: var(--neon-red);
 }
 
 
@@ -341,7 +375,7 @@ box-shadow: 0 0 10px var(--neon-pink);
 }
 
 .form-row label {
-color: var(--neon-purple);
+color: var(--neon-text);
 font-weight: bold;
 padding: 5px;
 }
@@ -368,7 +402,7 @@ padding: 5px;
 .payment-details {
     margin-left: 15px;
     display: none; /* Escondido por padrão */
-    border: 1px solid var(--neon-purple);
+    border: 1px solid var(--neon-red);
     padding: 10px;
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.05);
@@ -413,7 +447,7 @@ padding: 5px;
 }
 
 .form-row2 label {
-  color: var(--neon-purple);
+  color: var(--neon-text);
   font-weight: bold;
   padding: 5px;
   margin-left: 0; /* removi margem negativa para ficar alinhado */
@@ -426,7 +460,7 @@ padding: 5px;
   max-width: 400px;
   padding: 10px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--neon-purple);
+  border: 1px solid var(--neon-red);
   border-radius: 4px;
   color: var(--neon-text);
   align-self: stretch;
@@ -436,8 +470,8 @@ padding: 5px;
 .form-row2 select:focus,
 .form-row2 textarea:focus {
   outline: none;
-  border-color: var(--neon-pink);
-  box-shadow: 0 0 10px var(--neon-pink);
+  border-color: var(--dark-red);
+  box-shadow: 0 0 10px var(--dark-red);
 }
 
 /* Inputs dentro de payment-details com margem inferior */
@@ -458,7 +492,7 @@ padding: 5px;
   width: 100%;
   padding: 10px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--neon-purple);
+  border: 1px solid var(--neon-red);
   border-radius: 4px;
   color: var(--neon-text);
   align-self: center;
@@ -473,8 +507,8 @@ padding: 5px;
 .form-row select:focus,
 .form-row textarea:focus {
   outline: none;
-  border-color: var(--neon-pink);
-  box-shadow: 0 0 10px var(--neon-pink);
+  border-color: var(--dark-red);
+  box-shadow: 0 0 10px var(--dark-red);
 }
 
 #product_img {
@@ -499,7 +533,7 @@ padding: 5px;
 }
 
 .form-create label {
-  color: var(--neon-purple);
+  color: var(--neon-text);
   font-weight: bold;
   padding-bottom: 5px;
   width: 100%;
@@ -511,7 +545,7 @@ padding: 5px;
   width: 100%;
   padding: 10px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--neon-purple);
+  border: 1px solid var(--neon-red);
   border-radius: 4px;
   color: var(--neon-text);
   margin-bottom: 5px; /* espaço entre input e mensagem de erro */
@@ -522,8 +556,8 @@ padding: 5px;
 .form-create select:focus,
 .form-create textarea:focus {
   outline: none;
-  border-color: var(--neon-pink);
-  box-shadow: 0 0 10px var(--neon-pink);
+  border-color: var(--dark-red);
+  box-shadow: 0 0 10px var(--dark-red);
 }
 
 .form-create select {
@@ -556,7 +590,7 @@ padding: 10px;
 }
 
 .upload label {
-color: var(--neon-purple);
+color: var(--neon-text);
 font-weight: bold;
 padding: 20px;
 justify-self: center;
@@ -570,22 +604,22 @@ justify-self: center;
 
 .form-control input {
 background: rgba(255, 255, 255, 0.05);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 border-radius: 4px;
 color: var(--neon-text);
 }
 
 .form-control input:focus {
 outline: none;
-border-color: var(--neon-pink);
-box-shadow: 0 0 10px var(--neon-pink);
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
 }
 
 .upload input,
 .upload select
 .upload textarea {
 background: rgba(255, 255, 255, 0.05);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 border-radius: 4px;
 color: var(--neon-text);
 }
@@ -594,8 +628,8 @@ color: var(--neon-text);
 .upload select:focus,
 .upload textarea:focus {
 outline: none;
-border-color: var(--neon-pink);
-box-shadow: 0 0 10px var(--neon-pink);
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
 }
 
 #product_desc {
@@ -609,7 +643,7 @@ box-shadow: 0 0 10px var(--neon-pink);
   overflow-wrap: break-word;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--neon-purple);
+  border: 1px solid var(--neon-red);
   border-radius: 4px;
   color: var(--neon-text);
   }
@@ -624,7 +658,7 @@ padding: 20px;
 
 .product-card {
 background: rgba(255, 255, 255, 0.03);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-text);
 border-radius: 8px;
 padding: 15px;
 transition: all 0.3s;
@@ -655,7 +689,7 @@ a {
 }
 
 .product-price {
-color: var(--neon-pink);
+color: #f14444;
 font-weight: bold;
 font-size: 1.2em;
 margin-top: 10px;
@@ -669,7 +703,7 @@ justify-content:left;
 }
 
 .cart-table th {
-background: rgba(157, 0, 255, 0.2);
+background: rgba(255, 0, 0, 0.2);
 padding: 10px;
 text-align: left;
 width: fit-content
@@ -677,7 +711,7 @@ width: fit-content
 
 .cart-table td {
 padding: 10px;
-border-bottom: 1px solid rgba(157, 0, 255, 0.3);
+border-bottom: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 .cart-actions{
@@ -704,7 +738,7 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 
 .order-card {
 background: rgba(255, 255, 255, 0.03);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 border-radius: 8px;
 padding: 15px;
 margin-bottom: 20px;
@@ -713,7 +747,7 @@ margin-bottom: 20px;
 .order-header {
 display: flex;
 justify-content: space-between;
-border-bottom: 1px solid var(--neon-purple);
+border-bottom: 1px solid var(--neon-red);
 padding-bottom: 10px;
 margin-bottom: 10px;
 }
@@ -727,7 +761,7 @@ color: #00ff00;
 }
 
 .status-enviado {
-color: var(--neon-purple);
+color: var(--neon-red);
 }
 
 /* Responsivo */
@@ -761,8 +795,8 @@ flex-wrap: wrap;
 
 /* RESET & BASE */
 :root {
---neon-purple: #9d00ff;
---neon-pink: #ff00ff;
+--neon-red: #ff0000;
+--dark-red: #ff0000;
 --neon-dark: #0a0a0a;
 --neon-text: #f0f0f0;
 --container-width: 800px; /* Largura máxima centralizada */
@@ -811,7 +845,7 @@ align-items: center;
 .btn {
 padding: 8px 16px;
 background: transparent;
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 color: var(--neon-text);
 border-radius: 4px;
 cursor: pointer;
@@ -827,7 +861,7 @@ flex-wrap: wrap;
 justify-content: center;
 padding: 10px;
 margin-bottom: 20px;
-border-bottom: 1px solid var(--neon-purple);
+border-bottom: 1px solid var(--neon-red);
 }
 
 .product-list {
@@ -845,7 +879,7 @@ border-collapse: collapse;
 th, td {
 padding: 8px 12px;
 text-align: left;
-border-bottom: 1px solid rgba(157, 0, 255, 0.3);
+border-bottom: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 .login-logo-title-container {
@@ -865,26 +899,26 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 .login-title-main {
   font-family: 'UnifrakturCook', cursive;
   font-size: 30px;
-  color: #d4b3ff;
+  color: #ffffff;
   font-weight: bold;
   text-align: center;
-  text-shadow: 0 0 8px #b399ff;
+  text-shadow: 0 0 8px #ff9999;
 }
 
 .login-title-sub {
   font-family: 'UnifrakturCook', cursive;
   font-size: 30px;
-  color: #ec6df7;
+  color: #f76d6d;
   text-align: center;
   font-weight: normal;
   margin-left: -8px;
-  text-shadow: 0 0 8px #fb89ff;
+  text-shadow: 0 0 8px #ff8989;
 }
 
 .btn-login {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+    background: linear-gradient(45deg, var(--neon-red), var(--dark-red));
     color: white;
     border: none;
     border-radius: 4px;
@@ -896,7 +930,7 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 
 .btn-login:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 25px var(--neon-pink);
+    box-shadow: 0 0 25px var(--dark-red);
 }
 
 .login-page {
@@ -905,14 +939,14 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .neon-link {
-    color: var(--neon-purple);
+    color: var(--neon-red);
     font-weight: bold;
     transition: all 0.2s;
 }
 
 .neon-link:hover {
-    color: var(--neon-pink);
-    text-shadow: 0 0 8px var(--neon-pink);
+    color: var(--dark-red);
+    text-shadow: 0 0 8px var(--dark-red);
 }
 
 .alert-error {
@@ -944,16 +978,6 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 /* ===== VARIÁVEIS & RESET (mantendo seu estilo neon) ===== */
-:root {
-  --neon-purple: #9d00ff;
-  --neon-pink: #ff00ff;
-  --neon-dark: #0a0a0a;
-  --neon-darker: #050505;
-  --neon-text: #f0f0f0;
-  --neon-glow: 0 0 10px rgba(157, 0, 255, 0.7),
-               0 0 20px rgba(157, 0, 255, 0.5),
-               0 0 30px rgba(157, 0, 255, 0.3);
-}
 
 * {
   margin: 0;
@@ -974,14 +998,14 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   top: 0;
   left: 0;
   z-index: 1000;
-  border-bottom: 2px solid var(--neon-purple);
+  border-bottom: 2px solid var(--neon-red);
   box-shadow: var(--neon-glow);
 }
 
 .header-div button {
   padding: 8px 15px;
-  background: rgba(157, 0, 255, 0.2);
-  border: 1px solid var(--neon-purple);
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   transition: all 0.3s;
@@ -989,8 +1013,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .header-div button:hover {
-  background: var(--neon-purple);
-  box-shadow: 0 0 15px var(--neon-purple);
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
 }
 
 /* ===== SISTEMA DE UPLOAD (novo) ===== */
@@ -999,8 +1023,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 .file-upload-label {
   display: block;
   padding: 1.5rem;
-  background: rgba(157, 0, 255, 0.1);
-  border: 2px dashed var(--neon-purple);
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px dashed var(--neon-red);
   border-radius: 8px;
   text-align: center;
   cursor: pointer;
@@ -1008,8 +1032,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .file-upload-label:hover {
-  background: rgba(157, 0, 255, 0.2);
-  box-shadow: 0 0 20px rgba(157, 0, 255, 0.3);
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
 .file-upload-wrapper {
@@ -1021,7 +1045,7 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   width: 200px;
   height: 200px;
   object-fit: cover;
-  border: 2px dashed var(--neon-purple);
+  border: 2px dashed var(--neon-red);
   border-radius: 8px;
   margin: 1rem auto;
   display: block;
@@ -1044,7 +1068,7 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 
 .product-card:hover {
   transform: translateY(-5px);
-  border-color: var(--neon-purple);
+  border-color: var(--neon-red);
   box-shadow: var(--neon-glow);
 }
 
@@ -1066,15 +1090,15 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .form-control:focus {
-  border-color: var(--neon-purple);
-  box-shadow: 0 0 0 3px rgba(157, 0, 255, 0.2);
+  border-color: var(--neon-red);
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
 }
 
 /* ===== BOTÕES (mantendo seu estilo) ===== */
 .btn {
   padding: 10px 20px;
   background: transparent;
-  border: 2px solid var(--neon-purple);
+  border: 2px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   cursor: pointer;
@@ -1082,14 +1106,14 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .btn:hover {
-  background: var(--neon-purple);
-  box-shadow: 0 0 15px var(--neon-purple);
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
 }
 
 .btn-upload {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+  background: linear-gradient(135deg, var(--neon-red), var(--dark-red));
   width: 50%;
   padding: 12px;
   font-weight: bold;
@@ -1103,8 +1127,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   justify-self: center;
   flex-direction: column;
   padding: 10px 20px;
-  background: rgba(157, 0, 255, 0.2);
-  border: 1px solid var(--neon-purple);
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   transition: all 0.3s;
@@ -1121,8 +1145,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   justify-self: center;
   flex-direction: column;
   padding: 10px 20px;
-  background: rgba(157, 0, 255, 0.2);
-  border: 1px solid var(--neon-purple);
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   transition: all 0.3s;
@@ -1132,8 +1156,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .button-save-profile:hover {
-  background: var(--neon-purple);
-  box-shadow: 0 0 15px var(--neon-purple);
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
 }
 
 .button-login {
@@ -1143,8 +1167,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   align-self: center;
   flex-direction: column;
   padding: 10px 20px;
-  background: rgba(157, 0, 255, 0.2);
-  border: 1px solid var(--neon-purple);
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   transition: all 0.3s;
@@ -1154,8 +1178,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .button-login:hover {
-  background: var(--neon-purple);
-  box-shadow: 0 0 15px var(--neon-purple);
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
 }
 
 .button-login2 {
@@ -1165,8 +1189,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   justify-self: center;
   flex-direction: column;
   padding: 10px 20px;
-  background: rgba(157, 0, 255, 0.2);
-  border: 1px solid var(--neon-purple);
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   transition: all 0.3s;
@@ -1176,8 +1200,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .button-login2:hover {
-  background: var(--neon-purple);
-  box-shadow: 0 0 15px var(--neon-purple);
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
 }
 
 .button-register {
@@ -1187,8 +1211,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   align-self: center;
   flex-direction: column;
   padding: 10px 20px;
-  background: rgba(157, 0, 255, 0.2);
-  border: 1px solid var(--neon-purple);
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   transition: all 0.3s;
@@ -1198,8 +1222,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .button-register:hover {
-  background: var(--neon-purple);
-  box-shadow: 0 0 15px var(--neon-purple);
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
 }
 
 /* ===== RESPONSIVIDADE ===== */
@@ -1235,8 +1259,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: rgba(157, 0, 255, 0.1);
-  border: 2px dashed #9d00ff;
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px dashed #ff0000;
   border-radius: 8px;
   color: white;
   cursor: pointer;
@@ -1245,8 +1269,8 @@ border-bottom: 1px solid rgba(157, 0, 255, 0.3);
 }
 
 .file-upload-label:hover {
-  background: rgba(157, 0, 255, 0.2);
-  box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
 }
 
 .file-upload-input:valid ~ .file-upload-label {
@@ -1290,7 +1314,7 @@ h1 {
 }
 
 .perfil {
-  color:  #9d00ff;
+  color:  #ffffff;
   display: flex;
   flex-direction: column;
   justify-self: center;
@@ -1310,7 +1334,7 @@ h1 {
   justify-self: center;
   align-self: center;
   padding: 10px 25px;
-  background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+  background: linear-gradient(45deg, var(--neon-red), var(--dark-red));
   color: white;
   border: none;
   border-radius: 15 px; /* Bordas mais arredondadas */
@@ -1319,7 +1343,7 @@ h1 {
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(157, 0, 255, 0.5);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
   text-align: center;
   margin: 30px 0;
 }
@@ -1332,8 +1356,8 @@ h1 {
   justify-self: center;
   flex-direction: column;
   padding: 10px 20px;
-  background: rgba(157, 0, 255, 0.2);
-  border: 1px solid var(--neon-purple);
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
   color: var(--neon-text);
   border-radius: 4px;
   transition: all 0.3s;
@@ -1353,7 +1377,7 @@ h1 {
   width: 200px;
   height: 200px;
   object-fit: cover;
-  border: 2px dashed var(--neon-purple);
+  border: 2px dashed var(--neon-red);
   border-radius: 8px;
   margin: 1rem auto;
   display: block;
@@ -1405,7 +1429,7 @@ flex-direction: row;
 width: 100%;
 padding: 10px;
 background: rgba(255, 255, 255, 0.05);
-border: 1px solid var(--neon-purple);
+border: 1px solid var(--neon-red);
 border-radius: 4px;
 color: var(--neon-text);
 justify-self: center;
@@ -1416,8 +1440,8 @@ justify-self: center;
 .card select:focus,
 .card textarea:focus {
 outline: none;
-border-color: var(--neon-pink);
-box-shadow: 0 0 10px var(--neon-pink);
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
 }
 
 .card select {
@@ -1461,11 +1485,11 @@ box-shadow: 0 0 10px var(--neon-pink);
 }
 
 .card-title {
-  color: var(--neon-purple);
+  color: var(--neon-red);
 }
 
 .card-quantity {
-  color: var(--neon-purple);
+  color: var(--neon-red);
 }
 
 h2 {
@@ -1513,4 +1537,33 @@ h2 {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.about-section h1 {
+    text-align: center;
+}
+
+.about-section p {
+    text-align: justify;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.about-section h1,
+.about-section p {
+    text-align: center;
 }

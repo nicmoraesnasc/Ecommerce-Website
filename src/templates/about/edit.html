@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <title>Editar Sobre</title>
+</head>
+<body>
+
+    {% include 'header/index.html' %}
+
+    <div class="admin-section">
+        <h1>Editar Seção "Sobre"</h1>
+        <form method="POST" class="form-group3" action="{{ url_for('about_edit') }}">
+            <label for="title">Título:</label><br>
+            <input type="text" id="title" name="title" value="{{ info.title }}" required><br><br>
+
+            <label for="content">Conteúdo:</label><br>
+            <textarea id="content" name="content" rows="10" cols="80" required>{{ info.content }}</textarea><br><br>
+
+            <button type="submit" class="button-login2">Salvar Alterações</button>
+        </form>
+    </div>
+    <div class="admin-section">
+    <h1>Editar Seção "Sobre"</h1>
+    
+    <div style="background: #f0f0f0; padding: 10px; margin-bottom: 20px;">
+        <strong>DEBUG Info:</strong><br>
+        Title: "{{ info.title }}"<br>
+        Content: "{{ info.content }}"
+    </div>
+    
+    <form method="POST" class="form-group3" action="{{ url_for('about_edit') }}">
+        <label for="title">Título:</label><br>
+        <input type="text" id="title" name="title" value="{{ info.title }}" required><br><br>
+
+        <label for="content">Conteúdo:</label><br>
+        <textarea id="content" name="content" rows="10" cols="80" required>{{ info.content }}</textarea><br><br>
+
+        <button type="submit" class="button-login2">Salvar Alterações</button>
+    </form>
+</div>
+
+</body>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+</html>
