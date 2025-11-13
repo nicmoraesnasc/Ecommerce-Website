@@ -1,6 +1,7 @@
 import mysql.connector
 import os
 import logging
+from werkzeug.security import generate_password_hash, check_password_hash
 
 logger = logging.getLogger('werkzeug')
 
@@ -70,13 +71,6 @@ class Database:
             image_path VARCHAR(255)
         );
         """)
-
-    self.mycursor.execute("""
-        INSERT IGNORE INTO User 
-            (id, name, last_name,phone, state, city, email, password, is_admin) 
-        VALUES 
-            (1, 'root', 'root', '99999999999', 'root', 'root', 'root@root.com', 'root', 1);
-        """)
     
     self.mycursor.execute("""
         CREATE TABLE IF NOT EXISTS Cart (
@@ -134,22 +128,28 @@ class Database:
     self.mydb.commit()
 
   def insert_user(self, name, last_name, phone, zip_code, state, city, neighborhood, address, house_number, email, password, is_admin):
+    hashed_password = generate_password_hash(password)
     query = """
         INSERT INTO User 
         (name, last_name, phone, zip_code, state, city, neighborhood, address, house_number, email, password, is_admin)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-    values = (name, last_name, phone, zip_code, state, city, neighborhood, address, house_number, email, password, is_admin)
+    values = (name, last_name, phone, zip_code, state, city, neighborhood, address, house_number, email, hashed_password, is_admin)
     self.mycursor.execute(query, values)
     self.mydb.commit()
 
 
   def select_user(self, email, password):
-    self.mycursor.execute(f" SELECT * FROM User WHERE email = '{email}' AND password = '{password}';")
+    self.mycursor.execute(f" SELECT * FROM User WHERE email = '{email}';")
     user = []
     result = self.mycursor.fetchall()
+
     for row in result:
       user.append(row)
+
+    print(user)
+
+    check_password_hash(user[0][7], password)
     return user
   
   def select_user_by_id(self, user_id):
