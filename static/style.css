@@ -1,0 +1,1735 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px; /* Tamanho base */
+  }
+
+:root {
+    --neon-glow: 0 0 10px rgba(255, 0, 0, 0.7),
+                 0 0 20px rgba(255, 0, 0, 0.5),
+                 0 0 30px rgba(255, 0, 0, 0.3);
+  }
+  
+  
+  a {
+    color: var(--neon-red);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  
+  a:hover {
+    color: var(--dark-red);
+    text-shadow: 0 0 8px var(--dark-red);
+  }
+
+  .header-div {
+    background-color: var(--neon-darker);
+    width: 100vw;
+    padding: 15px 5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    align-items: center;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-img {
+    width: 100px; /* Aumenta a largura */
+    height: auto; /* Mantém proporção */
+    display: flex;
+    align-self: flex-start;
+    margin-left: -35px
+}
+
+.catalog-h1 {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  font-size: larger;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.header-div form {
+    margin: 0;
+}
+  
+.header-div button {
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+
+.header-h1 {
+  font-family: 'UnifrakturCook', cursive;
+  color: #f76d6d;
+  text-shadow: 0 0 8px #f3a3a3;
+  font-weight: 700;
+  margin: 0;
+  text-align: center; /* centraliza o texto */
+}
+
+.logo-title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    background-color: var(--neon-darker);
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 0 0 10px 10px;
+}
+
+.login-logo {
+    width: 80px;
+    height: auto;
+}
+
+.login-title {
+    font-family: 'UnifrakturCook', cursive;
+    color: #ff6666;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.title-main {
+  font-size: 22px; /* maior para Adorn Saturn */
+  margin-top: -20px;
+  margin-left: -280px;
+  color: white;
+}
+
+.title-sub {
+  font-size: 20px; /* menor para o subtítulo */
+  margin-top: -30px;
+  margin-bottom: -20px;
+  margin-left: -280px;
+  color: white;
+}
+  
+.flash-messages {
+    position: fixed;      /* Fixa no topo */
+    top: 140px;            /* Distância do topo */
+    left: 50%;            /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+    z-index: 9999;        /* Fica acima de outros elementos */
+    width: auto;
+    max-width: 90%;       /* Limita o tamanho */
+}
+
+.flash {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.flash.success {
+    background: rgba(0, 255, 0, 0.1);
+    border-left: 3px solid #0f0;
+}
+
+.flash.error {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #f00;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group label {
+display: block;
+color: var(--neon-text);
+font-weight: bold;
+padding: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-group2 {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: baseline;
+
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  justify-content: center;
+  justify-self: center;
+  width: fit-content;
+}
+
+.form-group2 label {
+display: block;
+color: var(--neon-text);
+font-weight: bold;
+padding: 20px;
+width: 50%
+}
+
+.form-group2 input,
+.form-group2 select,
+.form-group2 textarea {
+width: 100%;
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+.form-group2 input:focus,
+.form-group2 select:focus,
+.form-group2 textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-group-image {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: baseline;
+}
+
+.form-group-image label {
+display: flex;
+flex-direction: column;
+justify-content: center;
+color: var(--neon-text);
+font-weight: bold;
+padding: 20px;
+width: 50%
+}
+
+.form-group-image input,
+.form-group-image select,
+.form-group-image textarea {
+width: 100%;
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+.form-group-image input:focus,
+.form-group-image select:focus,
+.form-group-image textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-group3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group3 label {
+display: block;
+color: var(--neon-text);
+font-weight: bold;
+}
+
+.form-group3 input,
+.form-group3 select,
+.form-group3 textarea {
+width: 100%;
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+.form-group3 input:focus,
+.form-group3 select:focus,
+.form-group3 textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-group4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group4 label {
+display: block;
+color: var(--neon-text);
+font-weight: bold;
+}
+
+.form-group4 input,
+.form-group4 select,
+.form-group4 textarea {
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+.form-group4 input:focus,
+.form-group4 select:focus,
+.form-group4 textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-group5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.form-group5 label {
+display: block;
+color: var(--neon-text);
+font-weight: bold;
+padding: 20px;
+}
+
+.form-group5 input,
+.form-group5 select,
+.form-group5 textarea {
+width: 100%;
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+.form-group5 input:focus,
+.form-group5 select:focus,
+.form-group5 textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-manage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* espaço entre os elementos */
+  padding: 8px 0;
+}
+
+.profile-row label {
+  white-space: nowrap; /* evitar quebra de linha no nome e email */
+  margin: 0; /* remover margens default */
+}
+
+.profile-row label.name {
+  flex-shrink: 0; /* evita que encolha */
+  min-width: 150px; /* ajuste pra controlar onde começa o email */
+  font-weight: bold;
+}
+
+.profile-row label.email {
+  flex-grow: 1; /* email ocupa o máximo possível */
+  color: gray;
+  font-style: italic;
+}
+
+
+.profile-row label:nth-child(1) {
+  white-space: nowrap;
+  flex: 2;
+  font-weight: bold;
+  color: var(--neon-red);
+}
+
+
+.profile-row label:nth-child(2) {
+  flex: 3;
+  color: var(--neon-text);
+  word-break: break-word;
+}
+
+.profile-row form {
+  flex: 1;
+  margin: 0;
+  text-align: right;
+}
+
+.btn-excluir {
+  background-color: #ff4d4d;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-excluir:hover {
+  background-color: #e60000;
+}
+
+.form-row {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  justify-self: center;
+  justify-content: center;
+  align-items: left;
+  align-content: center;
+}
+
+.form-row label {
+color: var(--neon-text);
+font-weight: bold;
+padding: 5px;
+}
+
+/* Seu CSS original: */
+
+.payment-method {
+    /* Ajustado para ficar em linha junto com outros */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0; /* removi o margin para manter na mesma linha */
+    position: relative;
+}
+
+.radio-label-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.payment-details {
+    display: none;
+    margin: 0 auto;
+    border: 1px solid var(--neon-red);
+    padding: 10px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    width: 280px;
+    text-align: center;
+}
+
+#credit-card-details {
+    display: block;
+}
+
+.p-pix {
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+}
+
+#qrcode-img {
+  display: flex;
+  margin-left: 30px;
+}
+
+.payment-method.active .payment-details {
+    display: flex; /* mostra quando ativo */
+}
+
+/* Container geral para os métodos, alinhando todos em linha */
+.payment-methods {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+/* Seu estilo para os inputs, adaptado pra payment-details */
+.form-row2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.form-row2 label {
+  color: var(--neon-text);
+  font-weight: bold;
+  padding: 5px;
+  margin-left: 0; /* removi margem negativa para ficar alinhado */
+}
+
+.form-row2 input,
+.form-row2 select,
+.form-row2 textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--neon-red);
+  border-radius: 4px;
+  color: var(--neon-text);
+  align-self: stretch;
+}
+
+.form-row2 input:focus,
+.form-row2 select:focus,
+.form-row2 textarea:focus {
+  outline: none;
+  border-color: var(--dark-red);
+  box-shadow: 0 0 10px var(--dark-red);
+}
+
+/* Inputs dentro de payment-details com margem inferior */
+.payment-details input {
+    margin-bottom: 12px;
+}
+
+/* Labels dos métodos (Cartão, PIX, Boleto) com cursor pointer */
+.payment-method label {
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+/* Ajuste para o container dos inputs do endereço que você já tinha */
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--neon-red);
+  border-radius: 4px;
+  color: var(--neon-text);
+  align-self: center;
+}
+
+.form-row select option {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: var(--neon-text);
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--dark-red);
+  box-shadow: 0 0 10px var(--dark-red);
+}
+
+#product_img {
+  margin-top: 20px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  }
+
+.form-header {
+  display: flex;
+  justify-self: center;
+}
+
+.form-create {
+  display: flex;
+  flex-direction: column; /* organiza os elementos verticalmente */
+  padding: 10px 0;
+  align-items: flex-start;
+}
+
+.form-create label {
+  color: var(--neon-text);
+  font-weight: bold;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.form-create input,
+.form-create select,
+.form-create textarea {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--neon-red);
+  border-radius: 4px;
+  color: var(--neon-text);
+  margin-bottom: 5px; /* espaço entre input e mensagem de erro */
+  box-sizing: border-box;
+}
+
+.form-create input:focus,
+.form-create select:focus,
+.form-create textarea:focus {
+  outline: none;
+  border-color: var(--dark-red);
+  box-shadow: 0 0 10px var(--dark-red);
+}
+
+.form-create select {
+  background-color: #1a1a1a;
+  color: var(--neon-text);
+}
+
+.form-create select option {
+  background-color: #1a1a1a;
+  color: var(--neon-text);
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  width: 100%;
+  margin: 0; /* para ficar logo abaixo do input */
+  display: block; /* garante que fique em linha própria */
+}
+
+.form-upload {
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+}
+
+.upload {
+padding: 10px;
+}
+
+.upload label {
+color: var(--neon-text);
+font-weight: bold;
+padding: 20px;
+justify-self: center;
+}
+
+.form-control {
+  size: 20px;
+  height: 20px;
+  align-self: center;  
+}
+
+.form-control input {
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+}
+
+.form-control input:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.upload input,
+.upload select
+.upload textarea {
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+}
+
+.upload input:focus,
+.upload select:focus,
+.upload textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+#product_desc {
+  height: 150px;
+  width: 100%;
+  padding: 10px;
+  resize: none;
+  vertical-align: top;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--neon-red);
+  border-radius: 4px;
+  color: var(--neon-text);
+  }
+
+
+.product-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 20px;
+padding: 20px;
+}
+
+.product-card {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid var(--neon-text);
+border-radius: 8px;
+padding: 15px;
+transition: all 0.3s;
+}
+
+.product-card:hover {
+transform: translateY(-5px);
+box-shadow: var(--neon-glow);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block; /* Remove espaços em branco abaixo da imagem */
+}
+
+.product-card {
+  text-align: center;
+}
+
+
+a {
+  display: inline-block; /* Para o link respeitar o tamanho da imagem */
+  text-decoration: none; /* Se quiser remover o sublinhado */
+  cursor: pointer;
+}
+
+.product-price {
+color: #f14444;
+font-weight: bold;
+font-size: 1.2em;
+margin-top: 10px;
+}
+
+.cart-table {
+width:fit-content;
+border-collapse: collapse;
+margin: 20px 0;
+justify-content:left;
+}
+
+.cart-table th {
+background: rgba(255, 0, 0, 0.2);
+padding: 10px;
+text-align: left;
+width: fit-content
+}
+
+.cart-table td {
+padding: 10px;
+border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.cart-actions{
+  display: flex;
+  flex: row;
+  justify-content: center;
+}
+
+.td-1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.quantity-input {
+  width: 40%;
+  height: 40%;
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
+.tr {
+  justify-content: center;
+  width: fit-content
+}
+
+.order-card {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid var(--neon-red);
+border-radius: 8px;
+padding: 15px;
+margin-bottom: 20px;
+}
+
+.order-header {
+display: flex;
+justify-content: space-between;
+border-bottom: 1px solid var(--neon-red);
+padding-bottom: 10px;
+margin-bottom: 10px;
+}
+
+.status-pendente {
+color: #ffcc00;
+}
+
+.status-pago {
+color: #00ff00;
+}
+
+.status-enviado {
+color: var(--neon-red);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+.header-div {
+    padding-left: 80px;
+    background-size: 60px;
+}
+
+.product-list {
+    grid-template-columns: 1fr;
+}
+}
+
+/* CONTAINERS */
+.container {
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 20px 0;
+}
+
+/* HEADER ESPECÍFICO */
+.header-div {
+display: flex;
+gap: 10px;
+padding: 15px;
+align-items: center;
+flex-wrap: wrap;
+}
+
+/* RESET & BASE */
+:root {
+--neon-red: #d01f1f;
+--dark-red: #ff0000;
+--neon-dark: #0a0a0a;
+--neon-text: #f0f0f0;
+--container-width: 800px; /* Largura máxima centralizada */
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background-color: #050505;
+color: var(--neon-text);
+font-family: Arial, sans-serif;
+line-height: 1.5;
+display: flex;
+flex-direction: column;
+align-items: center;
+min-height: 100vh;
+padding: 20px;
+padding-top: 80px; /* Espaço para o header */
+}
+
+.container, 
+.checkout-container, 
+.cart-container, 
+.register-container {
+width: 100%;
+max-width: var(--container-width);
+margin: 0 auto;
+padding: 20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.order-summary {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.btn {
+padding: 8px 16px;
+background: transparent;
+border: 1px solid var(--neon-red);
+color: var(--neon-text);
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.3s;
+font-size: 0.9rem;
+margin: 5px 0;
+}
+
+.header-div {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+justify-content: center;
+padding: 10px;
+margin-bottom: 20px;
+}
+
+.product-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 15px;
+width: 80%;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+th, td {
+padding: 8px 12px;
+text-align: left;
+border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.login-logo-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: -100px;
+  margin-top: -60px;
+}
+
+.login-logo {
+  width: 100px;
+  height: auto;
+  margin-right: 50px;
+}
+
+.login-title-main {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 30px;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0px;
+  text-shadow: 0 0 8px #ff9999;
+}
+
+.login-title-sub {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 30px;
+  color: #f76d6d;
+  text-align: center;
+  font-weight: normal;
+  margin-left: -8px;
+  text-shadow: 0 0 8px #ff8989;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, var(--neon-red), var(--dark-red));
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px var(--dark-red);
+}
+
+.login-page {
+  display:flex;
+  flex-direction: column;
+}
+
+.neon-link {
+    color: var(--neon-red);
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.neon-link:hover {
+    color: var(--dark-red);
+    text-shadow: 0 0 8px var(--dark-red);
+}
+
+.alert-error {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid red;
+    padding: 10px;
+    margin-bottom: 1rem;
+    color: #ff6b6b;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .header-div {
+        flex-direction: column;
+        padding-top: 70px; /* Espaço para a logo */
+    }
+    
+    .header-logo {
+        position: absolute;
+        left: 50%;
+        top: 20px;
+    }
+}
+
+.header-logo {
+    height: 40px; /* Ajuste conforme necessário */
+    width: auto;
+    max-width: 120px;
+}
+
+/* ===== VARIÁVEIS & RESET (mantendo seu estilo neon) ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER (mantendo seu estilo) ===== */
+.header-div {
+  background: #000000;
+  width: 100%;
+  padding: 15px 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: var(--neon-glow);
+}
+
+.header-div button {
+  background: none;
+  border: none;
+  color: var(--neon-text);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 12px;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* efeito suave — leve zoom e brilho */
+.header-div button:hover {
+  transform: scale(1.1);
+}
+
+@keyframes glowPulse {
+  from {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px var(--neon-text);
+  }
+  to {
+    transform: scale(1.12);
+    text-shadow: 0 0 18px var(--neon-text), 0 0 30px var(--neon-text);
+  }
+}
+
+/* ===== SISTEMA DE UPLOAD (novo) ===== */
+
+
+.file-upload-label {
+  display: block;
+  padding: 1.5rem;
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px dashed var(--neon-red);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.file-upload-label:hover {
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-preview {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px dashed var(--neon-red);
+  border-radius: 8px;
+  margin: 1rem auto;
+  display: block;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.product-card {
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #333;
+  transition: all 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-red);
+  box-shadow: var(--neon-glow);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #333;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: white;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: var(--neon-red);
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+}
+
+/* ===== BOTÕES (mantendo seu estilo) ===== */
+.btn {
+  padding: 10px 20px;
+  background: transparent;
+  border: 2px solid var(--neon-red);
+  color: var(--neon-text);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
+}
+
+.btn-upload {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--neon-red), var(--dark-red));
+  width: 50%;
+  padding: 12px;
+  font-weight: bold;
+  align-self: center;
+}
+
+.button-profile {
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
+  color: var(--neon-text);
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.button-save-profile {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
+  color: var(--neon-text);
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: fit-content;
+  margin: 20px;
+}
+
+.button-save-profile:hover {
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
+}
+
+.button-login {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
+  color: var(--neon-text);
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.button-login:hover {
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
+}
+
+.button-login2 {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  justify-self: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
+  color: var(--neon-text);
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: fit-content;
+  margin: 20px;
+}
+
+.button-login2:hover {
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
+}
+
+.button-register {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
+  color: var(--neon-text);
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: 50%;
+  margin: 20px;
+}
+
+.button-register:hover {
+  background: var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .header-div {
+    flex-direction: column;
+    padding-top: 70px;
+  }
+  
+  .product-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  
+  .upload-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}
+
+.admin-section {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 40px;
+  }
+
+.file-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px dashed #ff0000;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.file-upload-label:hover {
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.file-upload-input:valid ~ .file-upload-label {
+  border-color: #00ff00;
+  background: rgba(0, 255, 0, 0.05);
+}
+
+.file-upload-label span {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.file-upload-label small {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  font-size: larger;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  margin-top: 50px;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.perfil {
+  color:  #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  padding: 100px;
+
+  border: none;
+  border-radius: 15 px; /* Bordas mais arredondadas */
+  font-weight: bold;
+
+  letter-spacing: 1px;
+}
+
+.btn-perfil {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  padding: 10px 25px;
+  background: linear-gradient(45deg, var(--neon-red), var(--dark-red));
+  color: white;
+  border: none;
+  border-radius: 15 px; /* Bordas mais arredondadas */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  text-align: center;
+  margin: 30px 0;
+}
+
+.btn-excluir {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--neon-red);
+  color: var(--neon-text);
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: fit-content;
+  margin: 20px;
+}
+
+.mb-4 {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-content: center;
+  margin-top: 70px;
+}
+
+.mb-5 {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-content: center;
+}
+
+.current-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px dashed var(--neon-red);
+  border-radius: 8px;
+  margin: 1rem auto;
+  display: block;
+}
+
+.card {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.col-md-2 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.col-lg-6 {
+  margin: 20px;
+}
+
+.mb-3 {
+  margin-top: 20px;  
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.card label {
+padding: 5px;
+align-items: center;
+justify-content: center;
+display: flex;
+flex-direction: row;
+}
+
+.card input,
+.card select,
+.card textarea {
+width: 100%;
+padding: 10px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--neon-red);
+border-radius: 4px;
+color: var(--neon-text);
+justify-self: center;
+}
+
+
+.card input:focus,
+.card select:focus,
+.card textarea:focus {
+outline: none;
+border-color: var(--dark-red);
+box-shadow: 0 0 10px var(--dark-red);
+}
+
+.card select {
+    background-color: #1a1a1a; /* fundo escuro para combinar com tema neon */
+    color: var(--neon-text);  /* mantém o texto neon se for visível */
+}
+
+.card select option {
+    background-color: #1a1a1a; /* ou #fff, dependendo do seu tema */
+    color: var(--neon-text);  /* ou #fff/#000 conforme contraste */
+}
+
+.tbody {
+  width: fit-content
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.row2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.col-md-6 {
+  padding: 15px;
+}
+
+.card-text {
+  max-width: 300px;       /* limita a largura da descrição */
+  white-space: normal;    /* permite quebra automática de linha */
+  word-wrap: break-word;  /* quebra palavras longas */
+  overflow-wrap: break-word;
+}
+
+.card-img-top {
+  margin-top: 80px;
+}
+
+.card-title {
+  color: var(--neon-red);
+}
+
+.card-quantity {
+  color: var(--neon-red);
+}
+
+h2 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.fas {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.address-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* espaço para o botão */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.about-section h1 {
+    text-align: center;
+}
+
+.about-section p {
+    text-align: justify;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.about-section h1,
+.about-section p {
+    text-align: center;
+}
+
+.instagram-link {
+    color: #e83030; /* cor típica do Instagram */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.instagram-link:hover {
+    text-decoration: underline;
+}
+
+.info-label {
+  color: rgb(226, 40, 40);
+}
+
+.social-media-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.social-select {
+    width: 200px;
+    padding: 8px;
+}
+
+.social-link-input {
+    flex: 1;
+    padding: 8px;
+}
+
+.remove-social, .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-secondary:hover {
+    background-color: #545b62;
+}
+
+.social-icon {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.social-select {
+    width: 200px;
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+}
+
+.social-select option {
+    background: #333 !important;
+    color: white !important;
+}

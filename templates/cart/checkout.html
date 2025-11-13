@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Compra</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include 'header/index.html' %}
+
+  <div class="checkout-container">
+    <h1 class="checkout-title">FINALIZAR COMPRA</h1>
+
+    <form method="POST" action="{{ url_for('process_payment') }}" class="checkout-form" id="checkout-form">
+      <!-- Endereço -->
+      <section class="address-section">
+        <h2>Endereço de entrega</h2>
+        <div class="new-address-fields">
+          <div class="form-row">
+            <label for="new_zipcode">CEP:</label>
+            <input type="text" id="new_zipcode" name="new_zipcode" required maxlength="9">
+            <span id="cep-status" style="margin-left: 10px; font-size: 12px;"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="new_address">Endereço completo:</label>
+            <input type="text" id="new_address" name="new_address" required>
+          </div>
+
+          <div class="form-row">
+            <label for="new_house_number">Número:</label>
+            <input type="text" id="new_house_number" name="new_house_number" required>
+          </div>
+
+          <div class="form-row">
+            <label for="new_city">Cidade:</label>
+            <input type="text" id="new_city" name="new_city" required>
+          </div>
+
+          <div class="form-row">
+            <label for="new_state">Estado:</label>
+            <input type="text" id="new_state" name="new_state" required readonly>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pagamento -->
+      <section class="payment-section">
+        <h2>Método de pagamento</h2>
+
+        <div class="payment-methods">
+          <div class="radio-label-group">
+            <input type="radio" id="credit_card" name="payment_method" value="credit_card" checked class="payment-radio">
+            <label for="credit_card">Cartão de Crédito</label>
+          </div>
+
+          <div class="radio-label-group">
+            <input type="radio" id="pix" name="payment_method" value="pix" class="payment-radio">
+            <label for="pix">PIX</label>
+          </div>
+
+          <div class="radio-label-group">
+            <input type="radio" id="boleto" name="payment_method" value="boleto" class="payment-radio">
+            <label for="boleto">Boleto Bancário</label>
+          </div>
+        </div>
+
+        <!-- Detalhes Cartão -->
+        <div id="credit-card-details" class="payment-details">
+          <div class="form-row2">
+            <label for="card_number">Número do Cartão:</label>
+            <input type="text" id="card_number" name="card_number" placeholder="0000 0000 0000 0000" data-required="credit_card">
+          </div>
+
+          <div class="form-row2">
+            <label for="card_name">Nome no Cartão:</label>
+            <input type="text" id="card_name" name="card_name" data-required="credit_card">
+          </div>
+
+          <div class="form-row2">
+            <label for="card_expiry">Validade (MM/AA):</label>
+            <input type="text" id="card_expiry" name="card_expiry" placeholder="MM/AA" data-required="credit_card">
+          </div>
+
+          <div class="form-row2">
+            <label for="card_cvv">CVV:</label>
+            <input type="text" id="card_cvv" name="card_cvv" placeholder="000" data-required="credit_card">
+          </div>
+        </div>
+
+        <!-- Detalhes PIX -->
+        <div id="pix-details" class="payment-details" style="display: none;">
+          <p class="p-pix">
+            Chave PIX (aleatória): 
+            <strong>f4a7e0f5-1234-4abc-9d3e-abcdef123456</strong>
+          </p>
+          <p class="p-pix">Escaneie o QR Code ou copie a chave acima:</p>
+          <img src="{{ url_for('static', filename='image/qrcode_pix.png') }}" id="qrcode-img" alt="QR Code PIX" style="width: 200px;">
+        </div>
+
+        <!-- Detalhes Boleto -->
+        <div id="boleto-details" class="payment-details" style="display: none;">
+          <p>O boleto será gerado após confirmar o pedido.</p>
+          <p>Você poderá imprimir ou pagar pelo internet banking.</p>
+        </div>
+      </section>
+
+      <!-- Resumo -->
+      <section class="order-summary">
+        <h2>Resumo do Pedido</h2>
+
+        <div class="order-items">
+          {% for item in cart_items %}
+          <div class="order-item">
+            <span class="product-name">{{ item.product_name }} ({{ item.quantity }}x)</span>
+            <span class="product-price">R$ {{ "%.2f"|format(item.price * item.quantity) }}</span>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="order-total">
+          <span>Total:</span>
+          <span>R$ {{ "%.2f"|format(total_price) }}</span>
+        </div>
+
+        <button type="submit" class="button-login2">Confirmar Pagamento</button>
+      </section>
+    </form>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function togglePaymentDetails() {
+        const selected = document.querySelector('input[name="payment_method"]:checked').id;
+        document.querySelectorAll('.payment-details').forEach(details => {
+            details.style.display = 'none';
+        });
+        if (selected === 'credit_card') {
+            document.getElementById('credit-card-details').style.display = 'block';
+        }
+        if (selected === 'pix') {
+            document.getElementById('pix-details').style.display = 'block';
+        }
+        if (selected === 'boleto') {
+            document.getElementById('boleto-details').style.display = 'block';
+        }
+    }
+
+    document.querySelectorAll('.payment-radio').forEach(radio => {
+        radio.addEventListener('change', togglePaymentDetails);
+    });
+
+    window.addEventListener('DOMContentLoaded', togglePaymentDetails);
+
+    // ViaCEP Integration - Busca automática ao sair do campo CEP
+    document.getElementById('new_zipcode').addEventListener('blur', function() {
+        const cep = this.value.replace(/\D/g, '');
+        const cepStatus = document.getElementById('cep-status');
+        
+        if (cep.length !== 8) {
+            cepStatus.textContent = 'CEP inválido';
+            cepStatus.style.color = 'red';
+            return;
+        }
+
+        cepStatus.textContent = 'Buscando CEP...';
+        cepStatus.style.color = 'blue';
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    cepStatus.textContent = 'CEP não encontrado';
+                    cepStatus.style.color = 'red';
+                    alert('CEP não encontrado. Por favor, verifique o CEP digitado.');
+                    return;
+                }
+
+                // Preenche os campos com os dados do CEP
+                document.getElementById('new_address').value = data.logradouro || '';
+                document.getElementById('new_city').value = data.localidade || '';
+                document.getElementById('new_state').value = data.uf || '';
+
+                cepStatus.textContent = 'CEP encontrado!';
+                cepStatus.style.color = 'green';
+
+                // Foca automaticamente no campo do número
+                document.getElementById('new_house_number').focus();
+
+                console.log('Dados do CEP:', data);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar CEP:', error);
+                cepStatus.textContent = 'Erro na busca';
+                cepStatus.style.color = 'red';
+                alert('Erro ao buscar CEP. Tente novamente.');
+            });
+    });
+
+    // Formatação do CEP
+    document.getElementById('new_zipcode').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 5) {
+            value = value.substring(0, 5) + '-' + value.substring(5, 8);
+        }
+        e.target.value = value;
+        
+        // Limpa o status quando o usuário começa a digitar novamente
+        document.getElementById('cep-status').textContent = '';
+    });
+
+    // Validação dos campos do cartão de crédito
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+        const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+        
+        if (paymentMethod === 'credit_card') {
+            const cardFields = document.querySelectorAll('[data-required="credit_card"]');
+            let isValid = true;
+            
+            cardFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.border = '2px solid red';
+                } else {
+                    field.style.border = '';
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('Por favor, preencha todos os campos do cartão de crédito.');
+                return;
+            }
+
+            // Validações adicionais para campos do cartão
+            const cardNumber = document.getElementById('card_number').value.replace(/\s/g, '');
+            const cardExpiry = document.getElementById('card_expiry').value;
+            const cardCvv = document.getElementById('card_cvv').value;
+
+            if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+                e.preventDefault();
+                alert('Número do cartão inválido. Deve conter 16 dígitos.');
+                return;
+            }
+
+            if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) {
+                e.preventDefault();
+                alert('Formato de validade inválido. Use MM/AA.');
+                return;
+            }
+
+            if (cardCvv.length < 3 || cardCvv.length > 4 || !/^\d+$/.test(cardCvv)) {
+                e.preventDefault();
+                alert('CVV inválido. Deve conter 3 ou 4 dígitos.');
+                return;
+            }
+        }
+    });
+
+    // Formatação dos campos do cartão
+    document.getElementById('card_number').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+        e.target.value = value.substring(0, 19);
+    });
+
+    document.getElementById('card_expiry').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 2) {
+            value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        }
+        e.target.value = value.substring(0, 5);
+    });
+
+    document.getElementById('card_cvv').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        e.target.value = value.substring(0, 4);
+    });
+
+    // Limpar estilos de erro quando o usuário começar a digitar
+    document.querySelectorAll('[data-required="credit_card"]').forEach(field => {
+        field.addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.style.border = '';
+            }
+        });
+    });
+  </script>
+</body>
+</html>
