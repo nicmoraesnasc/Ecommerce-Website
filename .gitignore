@@ -1,3 +1,2 @@
-*/__pycache__
-config.json
-run_app.bat
+__pycache__
+uploads/*

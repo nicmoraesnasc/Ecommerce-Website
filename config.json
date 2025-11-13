@@ -1,8 +1,0 @@
-{
-    "host" : "",
-    "port" : 8000,
-    "debug"  : false,
-    "db_name" : "",
-    "db_password": "",
-    "db_user": ""
-}

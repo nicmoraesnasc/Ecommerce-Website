@@ -19,10 +19,12 @@ app = Flask(__name__)
 app.secret_key = '1234'
 site = Blueprint('site', __name__, template_folder='templates')
 
-with open(str(sys.argv[1])) as config_file:
-    config = json.load(config_file)
+db_host = os.environ.get('DB_HOST', 'localhost')
+db_name = os.environ.get('DB_NAME', 'growcontrol')
+db_user = os.environ.get('DB_USER', 'root')
+db_password = os.environ.get('DB_PASSWORD', 'root')
 
-database = Database(config["host"], config["db_name"], config["db_user"], config["db_password"])
+database = Database(db_host, db_name, db_user, db_password)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'src', 'uploads')
@@ -755,9 +757,6 @@ def delete_social_media(id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    app.run(host=config["host"], 
-            port=config["port"], 
-            debug=config["debug"])
+    app.run('localhost', debug=False)
 
     
