@@ -19,10 +19,10 @@ app = Flask(__name__)
 app.secret_key = '1234'
 site = Blueprint('site', __name__, template_folder='templates')
 
-db_host = os.environ.get('DB_HOST', 'localhost')
-db_name = os.environ.get('DB_NAME', 'mydatabase2')
-db_user = os.environ.get('DB_USER', 'root')
-db_password = os.environ.get('DB_PASSWORD', 'root')
+db_host = os.environ.get('ADORNSATURN_DB_HOST', 'localhost')
+db_name = os.environ.get('ADORNSATURN_DB_NAME', 'adornsaturn')
+db_user = os.environ.get('ADORNSATURN_DB_USER', 'root')
+db_password = os.environ.get('ADORNSATURN_DB_PASSWORD', 'root')
 
 database = Database(db_host, db_name, db_user, db_password)
 

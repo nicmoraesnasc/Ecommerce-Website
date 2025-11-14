@@ -285,10 +285,14 @@ class Database:
     try:
         if not user_id or int(user_id) == 0:
             return False
+        
         user = self.select_user_by_id(user_id)
-        if not user or len(user[0]) <= 8:
+
+        if not user:
             return False
-        return bool(user[0][8])
+        
+        return bool(user[0][12])
+    
     except Exception as e:
         print(f"Erro ao verificar admin: {e}")
         return False
