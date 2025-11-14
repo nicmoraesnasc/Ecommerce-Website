@@ -11,17 +11,6 @@ class Database:
     self.mydb = mysql.connector.connect(
       host=host,
       user=db_user,
-      password=db_password
-    )
-
-    self.mycursor = self.mydb.cursor(dictionary=True)
-
-    self.mycursor.execute("CREATE DATABASE IF NOT EXISTS mydatabase2")
-    self.mycursor.execute("USE mydatabase2")
-
-    self.mydb = mysql.connector.connect(
-      host=host,
-      user=db_user,
       password=db_password,
       database=db_name
     )
@@ -148,9 +137,25 @@ class Database:
       user.append(row)
 
     print(user)
+    print(user[0])
+    print(user[0][7])
 
     check_password_hash(user[0][7], password)
     return user
+  
+  def verify_password(self, email, password):
+    self.mycursor.execute(f" SELECT id, password FROM User WHERE email = '{email}';")
+    hashed_password = []
+    result = self.mycursor.fetchall()
+
+    for row in result:
+      hashed_password.append(row)
+
+    print(hashed_password[0][0])
+
+    return hashed_password[0][0], check_password_hash(hashed_password[0][1], password)
+
+     
   
   def select_user_by_id(self, user_id):
     query = """

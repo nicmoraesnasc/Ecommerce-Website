@@ -20,14 +20,14 @@ app.secret_key = '1234'
 site = Blueprint('site', __name__, template_folder='templates')
 
 db_host = os.environ.get('DB_HOST', 'localhost')
-db_name = os.environ.get('DB_NAME', 'growcontrol')
+db_name = os.environ.get('DB_NAME', 'mydatabase2')
 db_user = os.environ.get('DB_USER', 'root')
 db_password = os.environ.get('DB_PASSWORD', 'root')
 
 database = Database(db_host, db_name, db_user, db_password)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-UPLOAD_FOLDER = os.path.join(BASE_DIR, 'src', 'uploads')
+UPLOAD_FOLDER = os.path.join(BASE_DIR, 'adornsaturn', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -78,13 +78,13 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
-        user = database.select_user(email, password)
+        user_id, login_valid = database.verify_password(email, password)
 
-        if not user:
+        if not login_valid:
             login_failed = True
             session['user_id'] = 0
         else:
-            session['user_id'] = int(user[0][0])
+            session['user_id'] = int(user_id)
 
             # TODO: verificar se usuario possui carrinho
             #       se nao possuir carrinho, criar um.
