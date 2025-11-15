@@ -240,7 +240,7 @@ class Database:
 			values.append(email)
 		if password:
 			updates.append("password = %s")
-			values.append(password)
+			values.append(generate_password_hash(password))
 
 		if updates:
 			query = f"UPDATE User SET {', '.join(updates)} WHERE id = %s"
