@@ -671,6 +671,8 @@ def admin_orders():
         status_filter=status_filter, search_query=search_query
     )
 
+    print(orders)
+
     return render_template(
         "admin/orders.html",
         orders=orders,
@@ -689,10 +691,6 @@ def admin_order_detail(order_id):
         shipping_status = request.form.get("shipping_status")
         payment_status = request.form.get("payment_status")
         tracking_code = request.form.get("tracking_code", "").strip() or None
-
-        print(f"DEBUG FORM - Shipping: '{shipping_status}'")
-        print(f"DEBUG FORM - Payment: '{payment_status}'")
-        print(f"DEBUG FORM - Tracking: '{tracking_code}'")
 
         try:
             database.update_order_status(

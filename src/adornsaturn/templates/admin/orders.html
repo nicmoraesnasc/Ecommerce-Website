@@ -56,35 +56,35 @@
                         <tbody>
                             {% for order in orders %}
                             <tr>
-                                <td>{{ order['id'] }}</td>
+                                <td>{{ order[0] }}</td>
                                 <td>
-                                    {% if order['tracking_code'] %}
-                                        {{ order['tracking_code'] }}
+                                    {% if order[1] %}
+                                        {{ order[1] }}
                                     {% else %}
                                         —
                                     {% endif %}
                                 </td>
-                                <td>{{ order['user_email'] }}</td>
-                                <td>{{ order['order_date'].strftime('%d/%m/%Y %H:%M') }}</td>
-                                <td>R$ {{ "%.2f"|format(order['total_price']) }}</td>
+                                <td>{{ order[2] }}</td>
+                                <td>{{ order[3].strftime('%d/%m/%Y %H:%M') }}</td>
+                                <td>R$ {{ "%.2f"|format(order[4]) }}</td>
                                 <td>
                                     <span class="badge 
-                                        {% if order['shipping_status'] == 'enviado' %}bg-success
-                                        {% elif order['shipping_status'] == 'enviando' %}bg-warning
+                                        {% if order[5] == 'enviado' %}bg-success
+                                        {% elif order[5] == 'enviando' %}bg-warning
                                         {% else %}bg-secondary{% endif %}">
-                                        {{ order['shipping_status']|title }}
+                                        {{ order[5]|title }}
                                     </span>
                                 </td>
                                 <td>
                                     <span class="badge 
-                                        {% if order['payment_status'] == 'pago' %}bg-success
-                                        {% elif order['payment_status'] == 'pendente' %}bg-warning
+                                        {% if order[6] == 'pago' %}bg-success
+                                        {% elif order[6] == 'pendente' %}bg-warning
                                         {% else %}bg-danger{% endif %}">
-                                        {{ order['payment_status']|title }}
+                                        {{ order[6]|title }}
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="/admin/order/{{ order['id'] }}" 
+                                    <a href="{{ url_for('admin_order_detail', order_id=order[0]) }}"
                                        class="button-login">
                                         <i class="fas fa-eye"></i> Detalhes
                                     </a>
