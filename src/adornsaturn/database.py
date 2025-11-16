@@ -125,7 +125,7 @@ class Database:
 		password=self.db_password, 
 		database=self.db_name,
 		connection_timeout=10, 
-		ssl_disabled=True
+		ssl_disabled=False
 		)
 	
 		return conn
@@ -409,18 +409,18 @@ class Database:
 		try:
 			conn = self._get_connection()
 			cursor = conn.cursor()
-			cursor.execute("SET FOREIGN_KEY_CHECKS = 0")
 			cursor.execute("DELETE FROM CartItem WHERE product_id = %s", (product_id,))
 			cursor.execute("DELETE FROM OrderItem WHERE product_id = %s", (product_id,))
 			
 			product = self.get_product_by_id(product_id)
 			if product and product[4]:
-				img_path = os.path.join('static', 'uploads', product[4])
+				img_path = os.path.join('adornsaturn', 'uploads', product[4])
 				if os.path.exists(img_path):
 					os.remove(img_path)
 			
 			cursor.execute("DELETE FROM Product WHERE id = %s", (product_id,))
 			conn.commit()
+
 			cursor.close()
 			conn.close()
 			return True
@@ -428,8 +428,6 @@ class Database:
 			conn.rollback()
 			logger.error(f"Error deleting product: {str(e)}")
 			return False
-		finally:
-			cursor.execute("SET FOREIGN_KEY_CHECKS = 1")
 
 	def select_product(self, product_id):
 		conn = self._get_connection()
