@@ -276,7 +276,10 @@ def update_user(id):
 def manage_users():
     users = database.get_users()
     is_admin = database.is_admin(session["user_id"])
-    users_filtered = [user for user in users if not user[8]]
+    users_filtered = [user for user in users if not bool(user[12])]
+
+    print(users)
+    print(users_filtered)
     return render_template("user/manage.html", users=users_filtered, is_admin=is_admin)
 
 
