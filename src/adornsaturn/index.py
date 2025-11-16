@@ -766,8 +766,8 @@ def about_edit():
         new_title = request.form["title"].strip()
         new_content = request.form["content"].strip()
 
-        title = new_title if new_title else current_info[1]
-        content = new_content if new_content else current_info[2]
+        title = new_title if new_title else current_info['title']
+        content = new_content if new_content else current_info['content']
 
         database.update_about(title, content)
 
@@ -784,8 +784,8 @@ def about_edit():
         return redirect(url_for("about"))
 
     info_dict = {
-        "title": current_info[1] if current_info else "",
-        "content": current_info[2] if current_info else "",
+        "title": current_info['title'] if current_info else "",
+        "content": current_info['content'] if current_info else "",
     }
 
     return render_template("about/edit.html", info=info_dict, social_media=social_media)
