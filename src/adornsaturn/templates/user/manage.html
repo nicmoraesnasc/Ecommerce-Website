@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
-    <title>Editar {{ id }}</title>
+    <title>Gerenciar usuários</title>
 </head>
 <body>
-    <div>
+    <div role="main" aria-label="Lista de usuários cadastrados">
         {% include 'header/index.html' %}
 
-        <div class="form-manage">
+        <div class="form-manage" role="list" aria-label="Usuários do sistema">
             {% for user in users %}
-                <div class="profile-row">
+                <div class="profile-row" role="listitem" aria-label="Usuário {{ user[1] }} {{ user[2] }}, email {{ user[10] }}">
                     <label class="name">{{ user[1] }} {{ user[2] }}</label>
                     <label class="email">{{ user[10] }}</label>
                     <form action="{{ url_for('delete_user', id=user[0]) }}" method="POST" style="margin:0;">
-                        <button class="btn-excluir">Excluir</button>
+                        <button class="btn-excluir" aria-label="Excluir usuário {{ user[1] }} {{ user[2] }}">Excluir</button>
                     </form>
                 </div>
             {% endfor %}

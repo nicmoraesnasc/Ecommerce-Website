@@ -374,46 +374,29 @@ box-shadow: 0 0 10px var(--dark-red);
 .profile-row {
   display: flex;
   align-items: center;
-  gap: 15px; /* espaço entre os elementos */
+  gap: 20px;
   padding: 8px 0;
 }
 
 .profile-row label {
-  white-space: nowrap; /* evitar quebra de linha no nome e email */
-  margin: 0; /* remover margens default */
+  margin: 0;
 }
 
-.profile-row label.name {
-  flex-shrink: 0; /* evita que encolha */
-  min-width: 150px; /* ajuste pra controlar onde começa o email */
-  font-weight: bold;
-}
-
-.profile-row label.email {
-  flex-grow: 1; /* email ocupa o máximo possível */
-  color: gray;
-  font-style: italic;
-}
-
-
-.profile-row label:nth-child(1) {
-  white-space: nowrap;
-  flex: 2;
+.profile-row .name {
+  min-width: 180px;
   font-weight: bold;
   color: var(--neon-red);
 }
 
-
-.profile-row label:nth-child(2) {
-  flex: 3;
+.profile-row .email {
+  flex: 1;
   color: var(--neon-text);
+  font-style: italic;
   word-break: break-word;
 }
 
 .profile-row form {
-  flex: 1;
-  margin: 0;
-  text-align: right;
+  margin-left: auto;
 }
 
 .btn-excluir {
@@ -1732,4 +1715,72 @@ h2 {
 .social-select option {
     background: #333 !important;
     color: white !important;
+}
+
+.api-products-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.api-products-container h1 {
+    text-align: center;
+    color: var(--neon-red);
+    margin-bottom: 10px;
+}
+
+.api-subtitle {
+    text-align: center;
+    color: var(--neon-text);
+    opacity: 0.7;
+    margin-bottom: 30px;
+}
+
+.api-product-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--neon-red);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.api-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.api-product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.api-product-title {
+    color: var(--neon-red);
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.api-product-description {
+    color: var(--neon-text);
+    font-size: 0.85rem;
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+.api-product-price {
+    color: #f14444;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
 }

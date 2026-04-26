@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+    <title>Produtos - Adorn Saturn</title>
+</head>
+<body>
+    {% include 'header/index.html' %}
+
+    <div class="api-products-container" role="main" aria-label="Lista de produtos carregados via API">
+        <h1>Nossos Produtos</h1>
+        <p class="api-subtitle">Produtos carregados via API</p>
+
+        <div id="products-container" class="products-grid" role="list" aria-label="Lista de produtos disponíveis"></div>
+    </div>
+
+    <script>
+        fetch('/api/products')
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Erro ao carregar produtos');
+                }
+                return res.json();
+            })
+            .then(products => {
+                const container = document.getElementById('products-container');
+                
+                if (!products || products.length === 0) {
+                    container.innerHTML = '<p class="empty-cart" role="status">Nenhum produto encontrado</p>';
+                    return;
+                }
+
+                products.forEach(p => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'api-product-card';
+                    productCard.setAttribute('role', 'listitem');
+                    productCard.setAttribute('aria-label', `Produto: ${p.name}, preço: R$ ${p.price}`);
+
+                    productCard.innerHTML = `
+                        <img src="/uploads/${p.image}" alt="${p.name}" class="api-product-image" onerror="this.src='{{ url_for('static', filename='image/empty-image.jpg') }}'">
+                        <h3 class="api-product-title">${escapeHtml(p.name)}</h3>
+                        <p class="api-product-description">${escapeHtml(p.description)}</p>
+                        <p class="api-product-price">R$ ${parseFloat(p.price).toFixed(2)}</p>
+                    `;
+
+                    container.appendChild(productCard);
+                });
+            })
+            .catch(error => {
+                const container = document.getElementById('products-container');
+                container.innerHTML = `<p class="error-message" role="alert" aria-live="polite">Erro ao carregar produtos: ${error.message}</p>`;
+            });
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+    </script>
+</body>
+</html>

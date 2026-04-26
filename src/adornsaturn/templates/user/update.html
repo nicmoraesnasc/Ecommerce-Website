@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,74 +12,100 @@
     
         <form id="updateForm" action="{{ url_for('update_user', id=id) }}" method="POST">
             {% if error %}
-                <div class="error-message" style="color: red; margin-bottom: 15px;">
+                <div class="error-message" style="color: red; margin-bottom: 15px;" aria-live="polite">
                     {{ error }}
                 </div>
             {% endif %}
 
-            <div id="password-mismatch" class="error-message" style="color: red; margin-bottom: 15px; display: none;">
+            <div id="password-mismatch" class="error-message" style="color: red; margin-bottom: 15px; display: none;" aria-live="polite">
                 As senhas não coincidem.
             </div>
 
             <label for="name">Nome: </label>
-            <input type="text" name="name" id="name" value="{{ name }}"><br>
+            <input type="text" name="name" id="name" value="{{ name }}" aria-describedby="name"><br>
 
             <label for="last_name">Sobrenome: </label>
-            <input type="text" name="last_name" id="last_name" value="{{ last_name }}"><br>
+            <input type="text" name="last_name" id="last_name" value="{{ last_name }}" aria-describedby="last_name"><br>
 
             <label for="phone">Telefone: </label>
-            <input type="text" name="phone" id="phone" value="{{ phone }}"><br>
+            <input type="text" name="phone" id="phone" value="{{ phone }}" aria-describedby="phone"><br>
 
             <label for="email">E-mail: </label>
-            <input type="email" name="email" id="email" value="{{ email }}"><br>
+            <input type="email" name="email" id="email" value="{{ email }}" aria-describedby="email"><br>
 
             <label for="state">Estado: </label>
-            <input type="text" name="state" id="state" value="{{ state }}"><br>
+            <input type="text" name="state" id="state" value="{{ state }}" aria-describedby="state"><br>
 
             <label for="city">Cidade: </label>
-            <input type="text" name="city" id="city" value="{{ city }}"><br>
+            <input type="text" name="city" id="city" value="{{ city }}" aria-describedby="city"><br>
 
             <label for="zip_code">CEP: </label>
-            <input type="text" name="zip_code" id="zip_code" value="{{ zip_code }}"><br>
+            <input type="text" name="zip_code" id="zip_code" value="{{ zip_code }}" aria-describedby="zip_code"><br>
 
             <label for="neighborhood">Bairro: </label>
-            <input type="text" name="neighborhood" id="neighborhood" value="{{ neighborhood }}"><br>
+            <input type="text" name="neighborhood" id="neighborhood" value="{{ neighborhood }}" aria-describedby="neighborhood"><br>
 
             <label for="address">Endereço: </label>
-            <input type="text" name="address" id="address" value="{{ address }}"><br>
+            <input type="text" name="address" id="address" value="{{ address }}" aria-describedby="address"><br>
 
             <label for="house_number">Número: </label>
-            <input type="number" name="house_number" id="house_number" value="{{ house_number }}"><br>
+            <input type="number" name="house_number" id="house_number" value="{{ house_number }}" aria-describedby="house_number"><br>
 
             <label for="password">Senha: </label>
-            <input type="password" name="password" id="password" placeholder="Deixe em branco para manter a senha atual"><br>
+                <div class="password-wrapper">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password"
+                        placeholder="Deixe em branco para manter a senha atual"
+                        aria-describedby="password-mismatch"
+                    >
+                    <button type="button" class="toggle-password" data-target="password" aria-label="Mostrar senha">👁</button>
+                </div><br>
 
-            <label for="password_c">Confirme sua senha: </label>
-            <input type="password" name="password_c" id="password_c" placeholder="Deixe em branco para manter a senha atual"><br>
+                <label for="password_c">Confirme sua senha: </label>
+                <div class="password-wrapper">
+                    <input 
+                        type="password" 
+                        name="password_c" 
+                        id="password_c"
+                        placeholder="Deixe em branco para manter a senha atual"
+                        aria-describedby="password-mismatch"
+                    >
+                    <button type="button" class="toggle-password" data-target="password_c" aria-label="Mostrar senha">👁</button>
 
+                </div><br>
             <button type="submit" class="button-save-profile">Salvar perfil</button>
         </form>
     </div>
 
     <script>
+    // Função para alternar visibilidade da senha
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            
+            // Atualizar aria-label para acessibilidade
+            this.setAttribute('aria-label', type === 'text' ? 'Ocultar senha' : 'Mostrar senha');
+        });
+    });
+
     document.getElementById('updateForm').addEventListener('submit', function(e) {
-        console.log('Formulário tentando enviar...');
-        
         const password = document.getElementById('password').value;
         const password_c = document.getElementById('password_c').value;
         const errorMsg = document.getElementById('password-mismatch');
         
-        console.log('Senha:', password);
-        console.log('Confirmação:', password_c);
-        
         if (password !== '' && password_c !== '' && password !== password_c) {
-            console.log('Senhas não coincidem - mostrando erro');
             errorMsg.style.display = 'block';
+            document.getElementById('password').setAttribute('aria-invalid', 'true');
+            document.getElementById('password_c').setAttribute('aria-invalid', 'true');
             e.preventDefault();
             return false;
         }
         
-        console.log('Senhas OK - enviando formulário');
         return true;
     });
 
@@ -93,12 +119,15 @@
         
         if (password !== '' && password_c !== '' && password !== password_c) {
             errorMsg.style.display = 'block';
+            document.getElementById('password').setAttribute('aria-invalid', 'true');
+            document.getElementById('password_c').setAttribute('aria-invalid', 'true');
         } else {
             errorMsg.style.display = 'none';
+            document.getElementById('password').removeAttribute('aria-invalid');
+            document.getElementById('password_c').removeAttribute('aria-invalid');
         }
     }
 
-    // CEP
     document.getElementById('zip_code').addEventListener('blur', function() {
         const cep = this.value.replace(/\D/g, '');
         if (cep.length === 8) {

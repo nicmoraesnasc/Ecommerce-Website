@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +7,51 @@
     <title>Home</title>
 </head>
 <body>
+
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
     {% include 'header/index.html' %}
-    <p> {{ user_id }} </p>
 
-    {% if is_admin %}
-        {% include 'product/create.html' %}
-    {% endif %}
-    
-    {% for product_id, product_name, product_desc, product_price, product_img in products %}
+    <main id="main-content">
+
+        <p aria-label="ID do usuário logado"> {{ user_id }} </p>
+
         {% if is_admin %}
-            <a href="{{ url_for('update_product', id=product_id) }}">{{ product_name }}</a>
-            <br>
-        {% else %}
-            <a href="{{ url_for('select_product', id=product_id) }}">{{ product_name }}</a>
+            <section aria-label="Cadastro de produtos">
+                {% include 'product/create.html' %}
+            </section>
         {% endif %}
-    {% endfor %}
+        
+        <section aria-label="Lista de produtos" aria-live="polite">
+            <h1>Produtos</h1>
 
+            <ul aria-label="Lista de produtos disponíveis">
+                {% for product_id, product_name, product_desc, product_price, product_img in products %}
+                    <li>
+                        {% if is_admin %}
+                            <a 
+                                href="{{ url_for('update_product', id=product_id) }}"
+                                aria-label="Editar produto {{ product_name }}"
+                                title="Editar produto {{ product_name }}"
+                            >
+                                {{ product_name }}
+                            </a>
+                            <br>
+                        {% else %}
+                            <a 
+                                href="{{ url_for('select_product', id=product_id) }}"
+                                aria-label="Visualizar produto {{ product_name }}"
+                                title="Visualizar produto {{ product_name }}"
+                            >
+                                {{ product_name }}
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+    </main>
     
 </body>
 </html>

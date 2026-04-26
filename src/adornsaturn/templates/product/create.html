@@ -1,52 +1,56 @@
-<div class="upload-container">
+<div class="upload-container" role="main" aria-label="Formulário de cadastro de produto">
     <form class="form-upload" action="{{ url_for('create_product') }}" method="POST" enctype="multipart/form-data">
         <div class="upload">
             <div class="file-upload-wrapper">
                 <label for="product_img" class="file-upload-label">
-                    <span>📤 Arraste ou clique para enviar uma imagem</span>
+                    <span aria-hidden="true">📤</span> Arraste ou clique para enviar uma imagem
                     <small>(Formatos: JPG, PNG, GIF | Máx. 5MB)</small>
                 </label>
-                <input type="file" name="product_img" id="product_img" class="file-upload-input" accept="image/*" required>
+                <input type="file" name="product_img" id="product_img" class="file-upload-input" accept="image/*" required aria-required="true" aria-describedby="img-error">
+                <div id="img-error" class="error-message" style="display: none;" aria-live="polite"></div>
             </div>
-            <div class="preview-container">
-                <img id="image-preview" class="upload-preview" src="{{ url_for('static', filename='image/empty-image.jpg')}}" alt="Pré-visualização">
+            <div class="preview-container" aria-label="Pré-visualização da imagem">
+                <img id="image-preview" class="upload-preview" src="{{ url_for('static', filename='image/empty-image.jpg')}}" alt="Nenhuma imagem selecionada">
             </div>
         </div>
 
         <div class="upload">
             <label for="product_name">Nome:</label>
-            <input type="text" class="form-control" name="product_name" id="product_name" required>
+            <input type="text" class="form-control" name="product_name" id="product_name" required aria-required="true" aria-describedby="name-error">
+            <div id="name-error" class="error-message" style="display: none;" aria-live="polite"></div>
         </div>
 
         <div class="upload">
             <label for="product_price">Preço:</label>
-            <input type="number" class="form-control" step="0.01" name="product_price" id="product_price" required>
+            <input type="number" class="form-control" step="0.01" name="product_price" id="product_price" required aria-required="true" aria-describedby="price-error">
+            <div id="price-error" class="error-message" style="display: none;" aria-live="polite"></div>
         </div>
         
         <div class="upload">
             <label for="product_desc">Descrição:</label>
-            <textarea name="product_desc" class="form-control" id="product_desc" required></textarea>
+            <textarea name="product_desc" class="form-control" id="product_desc" required aria-required="true" aria-describedby="desc-error"></textarea>
+            <div id="desc-error" class="error-message" style="display: none;" aria-live="polite"></div>
         </div>
 
-        <button type="submit" class="button-register">Cadastrar</button>
+        <button type="submit" class="button-register" aria-label="Cadastrar novo produto">Cadastrar</button>
     </form>
 </div>
 
 <script>
     document.getElementById('product_img').addEventListener('change', function(e) {
         const reader = new FileReader();
+        const preview = document.getElementById('image-preview');
+        
         reader.onload = function(event) {
-            document.getElementById('image-preview').src = event.target.result;
+            preview.src = event.target.result;
+            preview.alt = "Pré-visualização da imagem selecionada";
         };
-        reader.readAsDataURL(e.target.files[0]);
-    });
-
-    function updateFileName(input) {
-        const label = input.nextElementSibling;
-        if (input.files.length > 0) {
-        label.setAttribute('data-file', input.files[0].name);
+        
+        if (e.target.files.length > 0) {
+            reader.readAsDataURL(e.target.files[0]);
         } else {
-        label.setAttribute('data-file', '');
+            preview.src = "{{ url_for('static', filename='image/empty-image.jpg')}}";
+            preview.alt = "Nenhuma imagem selecionada";
         }
-    };
+    });
 </script>

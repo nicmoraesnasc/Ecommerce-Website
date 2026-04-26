@@ -298,6 +298,41 @@ def products():
         is_admin=database.is_admin(session["user_id"]),
     )
 
+@app.route("/api/products", methods=["GET"])
+def api_get_products():
+    products = database.get_products()
+
+    result = []
+
+    for p in products:
+        result.append({
+            "id": p[0],
+            "name": p[1],
+            "description": p[2],
+            "price": p[3],
+            "image": p[4]
+        })
+
+    return jsonify(result)
+
+@app.route("/api/products/<int:id>", methods=["GET"])
+def api_get_product(id):
+    p = database.get_product_by_id(id)
+
+    if not p:
+        return jsonify({"error": "Produto não encontrado"}), 404
+
+    return jsonify({
+        "id": p[0],
+        "name": p[1],
+        "description": p[2],
+        "price": p[3],
+        "image": p[4]
+    })
+
+@app.route("/products-api-view")
+def products_api_view():
+    return render_template("product/api_view.html")
 
 @app.route("/uploads/<filename>")
 def uploaded_file(filename):

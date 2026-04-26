@@ -1,8 +1,8 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        <div class="flash-messages">
+        <div class="flash-messages" role="alert" aria-live="polite">
             {% for category, message in messages %}
-                <div class="flash {{ category }}">{{ message }}</div>
+                <div class="flash {{ category }}" role="status">{{ message }}</div>
             {% endfor %}
         </div>
     {% endif %}
@@ -25,45 +25,49 @@
     }
 </style>
 
-<div class="header-div">
-    <a href="{{ url_for('index') }}" class="logo-link">
-        <img src="{{ url_for('static', filename='image/adorn_saturn_logo.jpg') }}" alt="Logo" class="logo-img">
+<div class="header-div" role="banner" aria-label="Menu principal de navegação">
+    <a href="{{ url_for('index') }}" class="logo-link" aria-label="Voltar para página inicial">
+        <img src="{{ url_for('static', filename='image/adorn_saturn_logo.jpg') }}" alt="Logo Adorn Saturn" class="logo-img">
     </a>
     <form method="get" action="{{ url_for('index') }}">
-        <button name="index-btn" class="button-header">Home</button>
+        <button name="index-btn" class="button-header" aria-label="Página inicial">Home</button>
     </form>
 
     {% if 'user_id' in session and session['user_id'] != 0 %}
         {% if is_admin %}
             <form method="get" action="{{ url_for('user') }}">
-                <button name="profile-btn" class="button-header">Perfil</button>
+                <button name="profile-btn" class="button-header" aria-label="Meu perfil">Perfil</button>
             </form>
             <form method="get" action="{{ url_for('manage_users') }}">
-                <button name="users-btn" class="button-header">Editar usuários</button>
+                <button name="users-btn" class="button-header" aria-label="Gerenciar usuários">Editar usuários</button>
             </form>
             <form method="get" action="{{ url_for('admin_orders') }}">
-                <button name="orders-btn" class="button-header">Pedidos</button>
+                <button name="orders-btn" class="button-header" aria-label="Gerenciar pedidos">Pedidos</button>
             </form>
             <form method="get" action="{{ url_for('about') }}">
-                <button name="edit-about-btn" class="button-header">Editar Sobre</button>
+                <button name="edit-about-btn" class="button-header" aria-label="Editar página Sobre">Editar Sobre</button>
+            </form>
+            <!-- NOVO: Link para API de Produtos -->
+            <form method="get" action="{{ url_for('products_api_view') }}">
+                <button name="api-btn" class="button-header" aria-label="Visualizar API de produtos">API Produtos</button>
             </form>
         {% else %}
             <form method="get" action="{{ url_for('my_orders') }}">
-                <button name="orders-btn" class="button-header">Minhas Compras</button>
+                <button name="orders-btn" class="button-header" aria-label="Minhas compras">Minhas Compras</button>
             </form>
             <form method="get" action="{{ url_for('cart') }}">
-                <button name="products-btn" class="button-header">Carrinho</button>
+                <button name="products-btn" class="button-header" aria-label="Meu carrinho">Carrinho</button>
             </form>
             <form method="get" action="{{ url_for('user') }}">
-                <button name="profile-btn" class="button-header">Perfil</button>
+                <button name="profile-btn" class="button-header" aria-label="Meu perfil">Perfil</button>
             </form>
             <form method="get" action="{{ url_for('about') }}">
-                <button name="about-btn" class="button-header">Sobre</button>
+                <button name="about-btn" class="button-header" aria-label="Sobre a loja">Sobre</button>
             </form>
         {% endif %}
 
         <form method="get" action="{{ url_for('logout') }}">
-            <button name="logout-btn" class="button-header">Log out</button>
+            <button name="logout-btn" class="button-header" aria-label="Sair da conta">Log out</button>
         </form>
     {% endif %}
 </div>

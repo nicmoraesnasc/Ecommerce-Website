@@ -5,103 +5,146 @@
   <title>Cadastro</title>
 </head>
 <body class="create-page">
-  <div class="register-container">
-    <form action="{{ url_for('create_user') }}" method="post" id="register-form" novalidate>
-      <div class="form-header">
-        <h1>CRIE SUA CONTA</h1>
-      </div>
-
-      <div class="form-body">
-
-        <div class="form-create">
-          <label for="name">Nome: *</label>
-          <input type="text" name="name" id="name" required />
-          <div class="error-message" id="name-error"></div>
+  <main>
+    <div class="register-container">
+      <form action="{{ url_for('create_user') }}" method="post" id="register-form" novalidate>
+        <div class="form-header">
+          <h1>CRIE SUA CONTA</h1>
         </div>
 
-        <div class="form-create">
-          <label for="last_name">Sobrenome: *</label>
-          <input type="text" name="last_name" id="last_name" required />
-          <div class="error-message" id="last_name-error"></div>
-        </div>
+        <div class="form-body">
 
-        <div class="form-create">
-          <label for="phone">Telefone: *</label>
-          <input type="text" name="phone" id="phone" required pattern="[0-9]{10,11}" />
-          <div class="error-message" id="phone-error"></div>
-        </div>
+          <div id="cep-status" aria-live="polite"></div>
 
-        <div class="form-create">
-          <label for="zip-code">CEP: *</label>
-          <input type="text" name="zip_code" id="zip-code" required pattern="[0-9]{8}" />
-          <div class="error-message" id="zip-code-error"></div>
-        </div>
-
-        <div class="form-create">
-          <label for="state">Estado:</label>
-          <input type="text" name="state" id="state" readonly />
-          <div class="error-message" id="state-error"></div>
-        </div>
-
-        <div class="form-create">
-          <label for="city">Cidade:</label>
-          <input type="text" name="city" id="city" readonly />
-          <div class="error-message" id="city-error"></div>
-        </div>
-
-        <div class="form-create">
-          <label for="neighborhood">Bairro:</label>
-          <input type="text" name="neighborhood" id="neighborhood" readonly />
-          <div class="error-message" id="neighborhood-error"></div>
-        </div>
-
-        <div class="form-create">
-          <label for="address">Endereço:</label>
-          <input type="text" name="address" id="address" readonly />
-          <div class="error-message" id="address-error"></div>
-        </div>
-
-        <div class="form-create">
-          <label for="house_number">Número da casa: *</label>
-          <input type="number" name="house_number" id="house_number" required />
-          <div class="error-message" id="house_number-error"></div>
-        </div>
-
-        <div class="form-create">
-          <label for="email">E-mail: *</label>
-          <input type="email" name="email" id="email" required />
-          <div class="error-message" id="email-error"></div>
-        </div>
-
-        <div class="form-create">
-          <label for="password">Senha: *</label>
-          <div class="password-wrapper">
-            <input type="password" name="password" id="password" required minlength="6" />
+          <div class="form-create">
+            <label for="name">Nome: *</label>
+            <input type="text" name="name" id="name" required aria-required="true" aria-describedby="name-error"/>
+            <div class="error-message" id="name-error"></div>
           </div>
-          <div class="error-message" id="password-error"></div>
-        </div>
 
-        <div class="form-create">
-          <label for="password_c">Confirme sua senha: *</label>
-          <div class="password-wrapper">
-            <input type="password" name="password_c" id="password_c" required />
+          <div class="form-create">
+            <label for="last_name">Sobrenome: *</label>
+            <input type="text" name="last_name" id="last_name" required aria-required="true" aria-describedby="last_name-error"/>
+            <div class="error-message" id="last_name-error"></div>
           </div>
-          <div class="error-message" id="password_c-error"></div>
-        </div>
 
-        <div class="form-footer">
-          <button type="submit" class="button-login2">Registrar</button>
-        </div>
+          <div class="form-create">
+            <label for="phone">Telefone: *</label>
+            <input type="text" name="phone" id="phone" required pattern="[0-9]{10,11}" aria-required="true" aria-describedby="phone-error"/>
+            <div class="error-message" id="phone-error"></div>
+          </div>
 
-      </div>
-    </form>
-  </div>
+          <div class="form-create">
+            <label for="zip-code">CEP: *</label>
+            <input type="text" name="zip_code" id="zip-code" required pattern="[0-9]{8}" aria-required="true" aria-describedby="zip-code-error"/>
+            <div class="error-message" id="zip-code-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="state">Estado:</label>
+            <input type="text" name="state" id="state" readonly aria-readonly="true" aria-describedby="state-error" aria-label="Estado preenchido automaticamente pelo CEP"/>
+            <div class="error-message" id="state-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="city">Cidade:</label>
+            <input type="text" name="city" id="city" readonly aria-readonly="true" aria-describedby="city-error" aria-label="Cidade preenchida automaticamente pelo CEP"/>
+            <div class="error-message" id="city-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="neighborhood">Bairro:</label>
+            <input type="text" name="neighborhood" id="neighborhood" readonly aria-readonly="true" aria-describedby="neighborhood-error" aria-label="Bairro preenchido automaticamente pelo CEP"/>
+            <div class="error-message" id="neighborhood-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="address">Endereço:</label>
+            <input type="text" name="address" id="address" readonly aria-readonly="true" aria-describedby="address-error" aria-label="Endereço preenchido automaticamente pelo CEP"/>
+            <div class="error-message" id="address-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="house_number">Número da casa: *</label>
+            <input type="number" name="house_number" id="house_number" required aria-required="true" aria-describedby="house_number-error"/>
+            <div class="error-message" id="house_number-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="email">E-mail: *</label>
+            <input type="email" name="email" id="email" required aria-required="true" aria-describedby="email-error"/>
+            <div class="error-message" id="email-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="password">Senha: *</label>
+            <div class="password-wrapper" style="position: relative;">
+              <input 
+                type="password" 
+                name="password" 
+                id="password" 
+                required 
+                minlength="6" 
+                aria-required="true" 
+                aria-describedby="password-error"
+                style="padding-right: 35px;"
+              />
+              <button 
+                type="button" 
+                class="toggle-password" 
+                data-target="password" 
+                aria-label="Mostrar senha"
+                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1.2em; padding: 0;"
+              >👁</button>
+            </div>
+            <div class="error-message" id="password-error"></div>
+          </div>
+
+          <div class="form-create">
+            <label for="password_c">Confirme sua senha: *</label>
+            <div class="password-wrapper" style="position: relative;">
+              <input 
+                type="password" 
+                name="password_c" 
+                id="password_c" 
+                required 
+                aria-required="true" 
+                aria-describedby="password_c-error"
+                style="padding-right: 35px;"
+              />
+              <button 
+                type="button" 
+                class="toggle-password" 
+                data-target="password_c" 
+                aria-label="Mostrar senha"
+                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1.2em; padding: 0;"
+              >👁</button>
+            </div>
+            <div class="error-message" id="password_c-error"></div>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="button-login2">Registrar</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </main>
 
   <script>
-    function togglePassword(id, btn) {
-      const input = document.getElementById(id);
-      input.type = input.type === "password" ? "text" : "password";
-    }
+    // Função para alternar visibilidade da senha
+    document.querySelectorAll('.toggle-password').forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        
+        // Atualizar aria-label para acessibilidade
+        this.setAttribute('aria-label', type === 'text' ? 'Ocultar senha' : 'Mostrar senha');
+      });
+    });
 
     async function buscarCEP() {
       const cepInput = document.getElementById('zip-code');
@@ -114,7 +157,7 @@
         const data = await response.json();
 
         if (data.erro) {
-          alert('CEP não encontrado!');
+          document.getElementById('cep-status').textContent = 'CEP não encontrado!';
           return;
         }
 
@@ -122,8 +165,10 @@
         document.getElementById('city').value = data.localidade || '';
         document.getElementById('neighborhood').value = data.bairro || '';
         document.getElementById('address').value = data.logradouro || '';
+
+        document.getElementById('cep-status').textContent = 'Endereço preenchido automaticamente.';
       } catch (error) {
-        alert('Erro ao buscar o CEP.');
+        document.getElementById('cep-status').textContent = 'Erro ao buscar o CEP.';
       }
     }
 
