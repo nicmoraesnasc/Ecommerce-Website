@@ -33,8 +33,13 @@ jobs:
           python -m py_compile src/adornsaturn/index.py
           python -m py_compile src/adornsaturn/database.py
 
-      - name: Executar testes
-        env:
-          PYTHONPATH: src/adornsaturn
+      - name: Verificar estrutura
         run: |
-          pytest tests/ -v
+          echo "Arquivos em tests/:"
+          ls -la tests/
+          echo "Conteúdo do teste:"
+          cat tests/test_app.py
+
+      - name: Executar testes
+        run: |
+          python -m pytest tests/ -v
