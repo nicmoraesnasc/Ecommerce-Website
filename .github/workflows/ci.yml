@@ -34,5 +34,7 @@ jobs:
           python -m py_compile src/adornsaturn/database.py
 
       - name: Executar testes
+        env:
+          PYTHONPATH: src/adornsaturn
         run: |
-          pytest
+          pytest tests/ -v
