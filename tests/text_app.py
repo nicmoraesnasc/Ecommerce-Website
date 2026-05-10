@@ -3,7 +3,7 @@ import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src', 'adornsaturn'))
 
-from app import app
+from index import app
 
 
 def test_login_page():
