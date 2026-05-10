@@ -10,24 +10,24 @@
 
     {% include 'header/index.html' %}
 
-    <div class="admin-section">
-    <h1>Editar Seção "Sobre"</h1>
-    <form method="POST" class="form-group4" action="{{ url_for('about_edit') }}">
-        
-        <p><em>Deixe em branco para manter o conteúdo atual</em></p>
-        
-        <label for="title">Título:</label><br>
-        <input type="text" id="title" name="title" value="{{ info.title }}" placeholder="{{ info.title }}"><br><br>
+    <div class="admin-section" role="main" aria-label="Página de edição do conteúdo Sobre">
+        <h1>Editar Seção "Sobre"</h1>
+        <form method="POST" class="form-group4" action="{{ url_for('about_edit') }}" aria-label="Formulário de edição do conteúdo Sobre e redes sociais">
+            
+            <p><em>Deixe em branco para manter o conteúdo atual</em></p>
+            
+            <label for="title">Título:</label><br>
+            <input type="text" id="title" name="title" value="{{ info.title }}" placeholder="{{ info.title }}" aria-describedby="title-error"><br><br>
 
-        <label for="content">Conteúdo:</label><br>
-        <textarea id="content" name="content" rows="10" cols="80" placeholder="{{ info.content }}">{{ info.content }}</textarea><br><br>
+            <label for="content">Conteúdo:</label><br>
+            <textarea id="content" name="content" rows="10" cols="80" placeholder="{{ info.content }}" aria-describedby="content-error">{{ info.content }}</textarea><br><br>
 
             <h3>Redes Sociais</h3>
             
-            <div id="social-media-container">
-                <!-- CAMPO INICIAL OBRIGATÓRIO -->
-                <div class="social-media-item">
-                    <select name="social_name[]" class="social-select" required>
+            <div id="social-media-container" role="group" aria-label="Redes sociais cadastradas">
+                <div class="social-media-item" role="group" aria-label="Nova rede social">
+                    <label for="social_name_1" class="visually-hidden">Rede social</label>
+                    <select name="social_name[]" id="social_name_1" class="social-select" required aria-required="true">
                         <option value="">Selecione...</option>
                         <option value="instagram">Instagram</option>
                         <option value="facebook">Facebook</option>
@@ -38,14 +38,15 @@
                         <option value="whatsapp">WhatsApp</option>
                     </select>
                     
-                    <input type="url" name="social_link[]" placeholder="https://..." class="social-link-input" required>
+                    <input type="url" name="social_link[]" placeholder="https://..." class="social-link-input" required aria-required="true" aria-label="Link da rede social">
                     
-                    <button type="button" class="remove-social" onclick="this.parentElement.remove()">❌</button>
+                    <button type="button" class="remove-social" onclick="this.parentElement.remove()" aria-label="Remover esta rede social">❌</button>
                 </div>
                 
                 {% for social in social_media %}
-                <div class="social-media-item">
-                    <select name="social_name[]" class="social-select" required>
+                <div class="social-media-item" role="group" aria-label="Rede social {{ social.social_name }}">
+                    <label for="social_name_{{ loop.index }}" class="visually-hidden">Rede social</label>
+                    <select name="social_name[]" id="social_name_{{ loop.index }}" class="social-select" required aria-required="true">
                         <option value="">Selecione...</option>
                         <option value="instagram" {% if social.social_name == 'instagram' %}selected{% endif %}>Instagram</option>
                         <option value="facebook" {% if social.social_name == 'facebook' %}selected{% endif %}>Facebook</option>
@@ -56,23 +57,23 @@
                         <option value="whatsapp" {% if social.social_name == 'whatsapp' %}selected{% endif %}>WhatsApp</option>
                     </select>
                     
-                    <input type="url" name="social_link[]" value="{{ social.social_link }}" placeholder="https://..." class="social-link-input" required>
+                    <input type="url" name="social_link[]" value="{{ social.social_link }}" placeholder="https://..." class="social-link-input" required aria-required="true" aria-label="Link da rede social {{ social.social_name }}">
                     
-                    <button type="button" class="remove-social" onclick="this.parentElement.remove()">❌</button>
+                    <button type="button" class="remove-social" onclick="this.parentElement.remove()" aria-label="Remover rede social {{ social.social_name }}">❌</button>
                 </div>
                 {% endfor %}
             </div>
 
-            <button type="button" id="add-social" class="button-secondary">+ Adicionar Rede Social</button>
+            <button type="button" id="add-social" class="button-secondary" aria-label="Adicionar nova rede social">+ Adicionar Rede Social</button>
             <br><br>
 
-            <button type="submit" class="button-login2">Salvar Alterações</button>
+            <button type="submit" class="button-login2" aria-label="Salvar alterações do conteúdo Sobre e redes sociais">Salvar Alterações</button>
         </form>
     </div>
 
     <template id="social-template">
         <div class="social-media-item">
-            <select name="social_name[]" class="social-select" required>
+            <select name="social_name[]" class="social-select" required aria-required="true">
                 <option value="">Selecione a rede social</option>
                 <option value="instagram">Instagram</option>
                 <option value="facebook">Facebook</option>
@@ -83,9 +84,9 @@
                 <option value="whatsapp">WhatsApp</option>
             </select>
                         
-            <input type="url" name="social_link[]" placeholder="https://..." class="social-link-input" required>
+            <input type="url" name="social_link[]" placeholder="https://..." class="social-link-input" required aria-required="true" aria-label="Link da rede social">
             
-            <button type="button" class="remove-social" onclick="this.parentElement.remove()">❌</button>
+            <button type="button" class="remove-social" onclick="this.parentElement.remove()" aria-label="Remover esta rede social">❌</button>
         </div>
     </template>
 
@@ -99,9 +100,9 @@
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <div class="flash-messages">
+            <div class="flash-messages" role="alert" aria-live="polite">
                 {% for category, message in messages %}
-                    <div class="flash {{ category }}">{{ message }}</div>
+                    <div class="flash {{ category }}" role="status">{{ message }}</div>
                 {% endfor %}
             </div>
         {% endif %}

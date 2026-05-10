@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
-    <title>Catálogo</title>
+    <title>Produto - {{ product_name }}</title>
 </head>
 <body>
-    <div class="card">
+    <div class="card" role="main" aria-label="Página de detalhe do produto">
         {% include 'header/index.html' %}
-        <img class="card-img-top" src="{{ url_for('uploaded_file', filename=product_img) }}" alt="Imagem de capa do card" style="width: 150px;">
-        <div class="card">
-            <form method="POST" action="{{ url_for('add_to_cart', product_id=product_id) }}">
+        <img class="card-img-top" src="{{ url_for('uploaded_file', filename=product_img) }}" alt="{{ product_name }}" style="width: 150px;">
+        <div class="card" aria-label="Informações do produto">
+            <form method="POST" action="{{ url_for('add_to_cart', product_id=product_id) }}" aria-label="Formulário para adicionar produto ao carrinho">
                 <label><h5 class="card-title">{{ product_name }}</h5></label>
-                <label><p class="card-price">{{ product_price }}</p></label>
+                <label><p class="card-price">R$ {{ "%.2f"|format(product_price) }}</p></label>
                 <label><p class="card-text">{{ product_desc }}</p></label>
                 <label for="quantity" class="card-quantity"><h5>Quantidade:</h5></label>
-                <input type="number" name="quantity" id="quantity" value="1" min="1" required>
-                <button type="submit" class="button-login2">Adicionar ao carrinho</button>
+                <input type="number" name="quantity" id="quantity" value="1" min="1" required aria-required="true" aria-describedby="quantity-error">
+                <button type="submit" class="button-login2" aria-label="Adicionar {{ product_name }} ao carrinho">Adicionar ao carrinho</button>
             </form>
         </div>
     </div>

@@ -9,62 +9,61 @@
 <body>
     {% include 'header/index.html' %}
     
-    <div class="cart-container">
+    <div class="cart-container" role="main" aria-label="Página do carrinho de compras">
         <h1>SEU CARRINHO</h1>
         
         {% if cart_items %}
-            <!-- TABELA DO CARRINHO (ADICIONE AQUI) -->
-            <table class="cart-table">
+            <table class="cart-table" role="table" aria-label="Itens do carrinho">
                 <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th>Preço Unitário</th>
-                        <th>Quantidade</th>
-                        <th>Total</th>
-                        <th>Ações</th>
+                    <tr role="row">
+                        <th scope="col" role="columnheader">Produto</th>
+                        <th scope="col" role="columnheader">Preço Unitário</th>
+                        <th scope="col" role="columnheader">Quantidade</th>
+                        <th scope="col" role="columnheader">Total</th>
+                        <th scope="col" role="columnheader">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in cart_items %}
-                    <tr>
-                        <td>{{ item.product_name }}</td>
-                        <td>R$ {{ "%.2f"|format(item.price) }}</td>
-                        <td>
-                            <form method="POST" class="td-1" action="{{ url_for('update_cart_item', item_id=item.id) }}">
-                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="quantity-input">
-                                <button type="submit" class="button-login">Atualizar</button>
+                    <tr role="row" aria-label="Item: {{ item.product_name }}, preço: R$ {{ "%.2f"|format(item.price) }}, quantidade: {{ item.quantity }}">
+                        <td role="cell">{{ item.product_name }}</td>
+                        <td role="cell">R$ {{ "%.2f"|format(item.price) }}</td>
+                        <td role="cell">
+                            <form method="POST" class="td-1" action="{{ url_for('update_cart_item', item_id=item.id) }}" aria-label="Formulário para atualizar quantidade do produto {{ item.product_name }}">
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="quantity-input" aria-required="true" aria-label="Quantidade de {{ item.product_name }}">
+                                <button type="submit" class="button-login" aria-label="Atualizar quantidade de {{ item.product_name }}">Atualizar</button>
                             </form>
                         </td>
-                        <td>R$ {{ "%.2f"|format(item.price * item.quantity) }}</td>
-                        <td>
-                            <form method="POST" action="{{ url_for('remove_cart_item', item_id=item.id) }}">
-                                <button type="submit" class="button-login">Remover</button>
+                        <td role="cell">R$ {{ "%.2f"|format(item.price * item.quantity) }}</td>
+                        <td role="cell">
+                            <form method="POST" action="{{ url_for('remove_cart_item', item_id=item.id) }}" aria-label="Formulário para remover {{ item.product_name }} do carrinho">
+                                <button type="submit" class="button-login" aria-label="Remover {{ item.product_name }} do carrinho">Remover</button>
                             </form>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <td colspan="3"><strong>Total do Carrinho:</strong></td>
-                        <td colspan="2"><strong>R$ {{ "%.2f"|format(total_price) }}</strong></td>
+                    <tr role="row">
+                        <td colspan="3" role="cell"><strong>Total do Carrinho:</strong></td>
+                        <td colspan="2" role="cell"><strong>R$ {{ "%.2f"|format(total_price) }}</strong></td>
                     </tr>
                 </tfoot>
             </table>
             
-            <div class="cart-actions">
+            <div class="cart-actions" role="group" aria-label="Ações do carrinho">
                 <form method="GET" action="{{ url_for('checkout') }}">
-                    <button type="submit" class="button-login">Comprar</button>
+                    <button type="submit" class="button-login" aria-label="Finalizar compra">Comprar</button>
                 </form>
                 
                 <form method="POST" action="{{ url_for('clear_cart') }}">
-                    <button type="submit" class="button-login">Esvaziar carrinho</button>
+                    <button type="submit" class="button-login" aria-label="Remover todos os itens do carrinho" onclick="return confirm('Tem certeza que deseja esvaziar o carrinho?')">Esvaziar carrinho</button>
                 </form>
             </div>
         {% else %}
-            <div class="empty-cart">
+            <div class="empty-cart" role="status" aria-live="polite">
                 <p>Seu carrinho está vazio.</p>
-                <a href="{{ url_for('products') }}" class="btn-continue">Continuar comprando</a>
+                <a href="{{ url_for('products') }}" class="btn-continue" aria-label="Continuar comprando">Continuar comprando</a>
             </div>
         {% endif %}
     </div>

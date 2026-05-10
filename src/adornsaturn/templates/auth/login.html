@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +7,31 @@
     <title>Login</title>
 </head>
 <body class="login-page">
-    <div class="login-logo-title-container">
+    <div class="login-logo-title-container" role="banner" aria-label="Logo e título da loja">
         <img src="{{ url_for('static', filename='image/adorn_saturn_logo.jpg') }}" alt="Logo Adorn Saturn" class="login-logo">
         <h1 class="login-title-main">Adorn Saturn:</h1>
         <h2 class="login-title-sub">Acessórios e peças de crochê</h2>
     </div>
+    
     <form method="get" action="{{ url_for('register') }}">
-        <button name="register-btn" class="button-login">Registrar</button>
+        <button name="register-btn" class="button-login" aria-label="Ir para página de registro">Registrar</button>
     </form>
-    <form method="post">
-
-        <div class="form-group">
+    
+    <form method="post" aria-label="Formulário de login">
+        <div class="form-group" role="main" aria-label="Área de login">
             <h1>ENTRE NA SUA CONTA:</h1>
             {% if login_failed %}
-                <p>Login inválido</p>
+                <p role="alert" aria-live="polite" class="error-message">Login inválido</p>
             {% endif %}
             
             <label for="email">E-mail: </label>
-            <input type="text" name="email" id="email">
+            <input type="email" name="email" id="email" required aria-required="true" aria-describedby="email-error">
             
             <label for="password">Senha: </label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required aria-required="true" aria-describedby="password-error">
         </div>
         <div>
-            <button type="submit" class="button-login2">Entrar</button>
+            <button type="submit" class="button-login2" aria-label="Entrar na sua conta">Entrar</button>
         </div>
     </form>
 </body>

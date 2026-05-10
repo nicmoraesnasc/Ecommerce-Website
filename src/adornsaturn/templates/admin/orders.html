@@ -8,15 +8,15 @@
 </head>
 <body>
     {% include 'header/index.html' %}
-    <div class="container mt-4">
+    <div class="container mt-4" role="main" aria-label="Painel administrativo de pedidos">
         <h1>Painel de Pedidos</h1>
         
         <div class="card mb-5">
             <div class="card-body">
-                <form method="get" class="row g-3">
+                <form method="get" class="row g-3" aria-label="Formulário de filtro de pedidos">
                     <div class="col-md-4">
                         <label for="status" class="form-label">Filtrar por Status:</label>
-                        <select id="status" name="status" class="form-select">
+                        <select id="status" name="status" class="form-select" aria-describedby="status-error">
                             <option value="all" {% if status_filter == 'all' %}selected{% endif %}>Todos</option>
                             <option value="pendente" {% if status_filter == 'pendente' %}selected{% endif %}>Pendente</option>
                             <option value="enviado" {% if status_filter == 'enviado' %}selected{% endif %}>Enviado</option>
@@ -25,10 +25,10 @@
                     <div class="col-md-6">
                         <label for="search" class="form-label">Buscar:</label>
                         <input type="text" class="form-control" id="search" name="search" 
-                               placeholder="Código ou nome" value="{{ search_query }}">
+                               placeholder="Código ou nome" value="{{ search_query }}" aria-label="Buscar pedidos por código ou nome do cliente">
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="button-login">
+                        <button type="submit" class="button-login" aria-label="Aplicar filtros de busca">
                             <i class="fas fa-filter"></i> Filtrar
                         </button>
                     </div>
@@ -36,63 +36,64 @@
             </div>
         </div>
 
-        <!-- Tabela de Pedidos -->
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover" role="table" aria-label="Lista de pedidos">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Código de rastreio</th>
-                                <th>Cliente</th>
-                                <th>Data</th>
-                                <th>Total</th>
-                                <th>Envio</th>
-                                <th>Pagamento</th>
-                                <th>Ações</th>
+                            <tr role="row">
+                                <th scope="col" role="columnheader">ID</th>
+                                <th scope="col" role="columnheader">Código de rastreio</th>
+                                <th scope="col" role="columnheader">Cliente</th>
+                                <th scope="col" role="columnheader">Data</th>
+                                <th scope="col" role="columnheader">Total</th>
+                                <th scope="col" role="columnheader">Envio</th>
+                                <th scope="col" role="columnheader">Pagamento</th>
+                                <th scope="col" role="columnheader">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for order in orders %}
-                            <tr>
-                                <td>{{ order[0] }}</td>
-                                <td>
+                            <tr role="row" aria-label="Pedido {{ order[0] }} do cliente {{ order[2] }}, valor R$ {{ "%.2f"|format(order[4]) }}, status de envio: {{ order[5] }}, status de pagamento: {{ order[6] }}">
+                                <td role="cell">{{ order[0] }}</td>
+                                <td role="cell">
                                     {% if order[1] %}
-                                        {{ order[1] }}
+                                        <span aria-label="Código de rastreamento {{ order[1] }}">{{ order[1] }}</span>
                                     {% else %}
                                         —
                                     {% endif %}
                                 </td>
-                                <td>{{ order[2] }}</td>
-                                <td>{{ order[3].strftime('%d/%m/%Y %H:%M') }}</td>
-                                <td>R$ {{ "%.2f"|format(order[4]) }}</td>
-                                <td>
+                                <td role="cell">{{ order[2] }}</td>
+                                <td role="cell">{{ order[3].strftime('%d/%m/%Y %H:%M') }}</td>
+                                <td role="cell">R$ {{ "%.2f"|format(order[4]) }}</td>
+                                <td role="cell">
                                     <span class="badge 
                                         {% if order[5] == 'enviado' %}bg-success
                                         {% elif order[5] == 'enviando' %}bg-warning
-                                        {% else %}bg-secondary{% endif %}">
+                                        {% else %}bg-secondary{% endif %}"
+                                        aria-label="Status de envio: {{ order[5] }}">
                                         {{ order[5]|title }}
                                     </span>
                                 </td>
-                                <td>
+                                <td role="cell">
                                     <span class="badge 
                                         {% if order[6] == 'pago' %}bg-success
                                         {% elif order[6] == 'pendente' %}bg-warning
-                                        {% else %}bg-danger{% endif %}">
+                                        {% else %}bg-danger{% endif %}"
+                                        aria-label="Status de pagamento: {{ order[6] }}">
                                         {{ order[6]|title }}
                                     </span>
                                 </td>
-                                <td>
+                                <td role="cell">
                                     <a href="{{ url_for('admin_order_detail', order_id=order[0]) }}"
-                                       class="button-login">
+                                       class="button-login" aria-label="Ver detalhes do pedido {{ order[0] }}">
                                         <i class="fas fa-eye"></i> Detalhes
                                     </a>
                                 </td>
                             </tr>
                             {% else %}
-                            <tr>
-                                <td colspan="8" class="text-center py-4">Nenhum pedido encontrado</td>
+                            <tr role="row">
+                                <td colspan="8" class="text-center py-4" role="status">Nenhum pedido encontrado</td>
                             </tr>
                             {% endfor %}
                         </tbody>

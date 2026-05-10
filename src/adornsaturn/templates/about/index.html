@@ -10,18 +10,18 @@
 
     {% include 'header/index.html' %}
 
-    <div class="about-section">
+    <div class="about-section" role="main" aria-label="Página Sobre a loja">
         <h1>{{ info.title }}</h1>
         <p>{{ info.content | safe }}</p>
         <br>
         
         {% if social_media %}
-        <div class="social-media-section">
-            <p>Siga-nos nas redes sociais:</p>
-            <div class="social-links">
+        <div class="social-media-section" aria-labelledby="social-heading">
+            <p id="social-heading">Siga-nos nas redes sociais:</p>
+            <div class="social-links" role="list" aria-label="Links para redes sociais">
                 {% for social in social_media %}
-                    <a href="{{ social.social_link }}" target="_blank" class="social-link">
-                        <img src="{{ url_for('static', filename='image/social/' + social.social_name + '.png') }}" alt="{{ social.social_name }}" class="social-icon">
+                    <a href="{{ social.social_link }}" target="_blank" class="social-link" role="listitem" aria-label="{{ social.social_name }} - abrir em nova aba">
+                        <img src="{{ url_for('static', filename='image/social/' + social.social_name + '.png') }}" alt="Ícone do {{ social.social_name }}" class="social-icon">
                     </a>
                 {% endfor %}
             </div>
@@ -31,7 +31,7 @@
 
     {% if is_admin %}
         <form method="get" action="{{ url_for('about_edit') }}">
-            <button type="submit" class="button-login2">Editar Seção "Sobre"</button>
+            <button type="submit" class="button-login2" aria-label="Editar conteúdo da página Sobre">Editar Seção "Sobre"</button>
         </form>
     {% endif %}
 

@@ -9,19 +9,19 @@
 <body>
     {% include 'header/index.html' %}
     
-    <div class="checkout-success">
+    <div class="checkout-success" role="main" aria-label="Página de confirmação de compra finalizada">
         <h2>Compra Finalizada com Sucesso!</h2>
-        <div class="order-details">
-            <p>Seu código de rastreamento é: <strong>{{ tracking_code }}</strong></p>
+        <div class="order-details" aria-label="Detalhes do pedido">
+            <p>Seu código de rastreamento é: <strong aria-label="Código de rastreamento {{ tracking_code }}">{{ tracking_code }}</strong></p>
             <p>Você receberá um e-mail com os detalhes do envio.</p>
             
-            <div class="shipping-info">
-                <h3>Endereço de Envio:</h3>
+            <div class="shipping-info" aria-labelledby="shipping-heading">
+                <h3 id="shipping-heading">Endereço de Envio:</h3>
                 <p>{{ order.shipping_address }}</p>
                 <p>{{ order.shipping_city }} - {{ order.shipping_state }}</p>
             </div>
         </div>
-        <a href="{{ url_for('products') }}" class="btn-continue">Continuar comprando</a>
+        <a href="{{ url_for('products') }}" class="btn-continue" aria-label="Voltar para página de produtos e continuar comprando">Continuar comprando</a>
     </div>
 </body>
 </html>

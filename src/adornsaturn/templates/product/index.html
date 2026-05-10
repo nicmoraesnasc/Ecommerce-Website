@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
-    <title>Catálogo</title>
+    <title>Catálogo - Adorn Saturn</title>
 </head>
 <body>
     {% include 'header/index.html' %}
     
     {% if is_admin %}
-        <div class="admin-section">
+        <div class="admin-section" role="region" aria-label="Seção administrativa para registrar produtos">
             <h1>REGISTRAR PRODUTOS</h1>
             {% include 'product/create.html' %}
         </div>
     {% endif %}
 
-    <h1 class="catalog-h1">CATÁLOGO</h1>
+    <h1 class="catalog-h1" id="catalog-heading">CATÁLOGO</h1>
 
-    <div class="product-list">
+    <div class="product-list" role="list" aria-label="Lista de produtos disponíveis no catálogo" aria-labelledby="catalog-heading">
         {% for product in products %}
-            <div class="product-card">
+            <div class="product-card" role="listitem" aria-label="Produto: {{ product[1] }}, preço: R$ {{ "%.2f"|format(product[3]) }}">
                 {% if product[4] %}  <!-- Verifica se tem imagem -->
                     {% if is_admin %}
-                        <a href="{{ url_for('update_product', id=product[0]) }}" class="product-name">
+                        <a href="{{ url_for('update_product', id=product[0]) }}" class="product-name" aria-label="Editar produto {{ product[1] }}">
                             <img src="{{ url_for('uploaded_file', filename=product[4]) }}" 
                                 alt="{{ product[1] }}"
                                 class="product-image">
                             {{ product[1] }}
                         </a>
                     {% else %}
-                        <a href="{{ url_for('select_product', id=product[0]) }}" class="product-name">
+                        <a href="{{ url_for('select_product', id=product[0]) }}" class="product-name" aria-label="Ver detalhes do produto {{ product[1] }}">
                             <img src="{{ url_for('uploaded_file', filename=product[4]) }}" 
                                 alt="{{ product[1] }}"
                                 class="product-image">
@@ -39,14 +39,14 @@
                     {% endif %}
                 {% else %}
                     {% if is_admin %}
-                        <a href="{{ url_for('update_product', id=product[0]) }}" class="product-name">{{ product[1] }}</a>
+                        <a href="{{ url_for('update_product', id=product[0]) }}" class="product-name" aria-label="Editar produto {{ product[1] }}">{{ product[1] }}</a>
                     {% else %}
-                        <a href="{{ url_for('select_product', id=product[0]) }}" class="product-name">{{ product[1] }}</a>
+                        <a href="{{ url_for('select_product', id=product[0]) }}" class="product-name" aria-label="Ver detalhes do produto {{ product[1] }}">{{ product[1] }}</a>
                     {% endif %}
                 {% endif %}
                 
                 <p class="product-desc">{{ product[2] }}</p>
-                <div class="product-price">R$ {{ "%.2f"|format(product[3]) }}</div>
+                <div class="product-price" aria-label="Preço: R$ {{ "%.2f"|format(product[3]) }}">R$ {{ "%.2f"|format(product[3]) }}</div>
             </div>
         {% endfor %}
     </div>

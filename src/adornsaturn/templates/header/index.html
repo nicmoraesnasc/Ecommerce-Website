@@ -47,10 +47,6 @@
             <form method="get" action="{{ url_for('about') }}">
                 <button name="edit-about-btn" class="button-header" aria-label="Editar página Sobre">Editar Sobre</button>
             </form>
-            <!-- NOVO: Link para API de Produtos -->
-            <form method="get" action="{{ url_for('products_api_view') }}">
-                <button name="api-btn" class="button-header" aria-label="Visualizar API de produtos">API Produtos</button>
-            </form>
         {% else %}
             <form method="get" action="{{ url_for('my_orders') }}">
                 <button name="orders-btn" class="button-header" aria-label="Minhas compras">Minhas Compras</button>

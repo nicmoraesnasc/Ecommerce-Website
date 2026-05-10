@@ -9,68 +9,69 @@
 <body>
   {% include 'header/index.html' %}
 
-  <div class="checkout-container">
+  <div class="checkout-container" role="main" aria-label="Página de finalização de compra">
     <h1 class="checkout-title">FINALIZAR COMPRA</h1>
 
-    <form method="POST" action="{{ url_for('process_payment') }}" class="checkout-form" id="checkout-form">
-      <!-- Endereço -->
-      <section class="address-section">
-        <h2>Endereço de entrega</h2>
+    <form method="POST" action="{{ url_for('process_payment') }}" class="checkout-form" id="checkout-form" aria-label="Formulário de pagamento e endereço de entrega">
+      
+      <section class="address-section" aria-labelledby="address-heading">
+        <h2 id="address-heading">Endereço de entrega</h2>
         <div class="new-address-fields">
           <div class="form-row">
             <label for="new_zipcode">CEP:</label>
-            <input type="text" id="new_zipcode" name="new_zipcode" required maxlength="9">
-            <span id="cep-status" style="margin-left: 10px; font-size: 12px;"></span>
+            <input type="text" id="new_zipcode" name="new_zipcode" required maxlength="9" aria-required="true" aria-describedby="cep-status">
+            <span id="cep-status" style="margin-left: 10px; font-size: 12px;" aria-live="polite"></span>
           </div>
 
           <div class="form-row">
             <label for="new_address">Endereço completo:</label>
-            <input type="text" id="new_address" name="new_address" required>
+            <input type="text" id="new_address" name="new_address" required aria-required="true">
           </div>
 
           <div class="form-row">
             <label for="new_house_number">Número:</label>
-            <input type="text" id="new_house_number" name="new_house_number" required>
+            <input type="text" id="new_house_number" name="new_house_number" required aria-required="true">
           </div>
 
           <div class="form-row">
             <label for="new_city">Cidade:</label>
-            <input type="text" id="new_city" name="new_city" required>
+            <input type="text" id="new_city" name="new_city" required aria-required="true">
           </div>
 
           <div class="form-row">
             <label for="new_state">Estado:</label>
-            <input type="text" id="new_state" name="new_state" required readonly>
+            <input type="text" id="new_state" name="new_state" required readonly aria-readonly="true">
           </div>
         </div>
       </section>
 
-      <!-- Pagamento -->
-      <section class="payment-section">
-        <h2>Método de pagamento</h2>
+      
+      <section class="payment-section" aria-labelledby="payment-heading">
+        <h2 id="payment-heading">Método de pagamento</h2>
 
-        <div class="payment-methods">
+        <div class="payment-methods" role="radiogroup" aria-label="Opções de pagamento">
           <div class="radio-label-group">
-            <input type="radio" id="credit_card" name="payment_method" value="credit_card" checked class="payment-radio">
+            <input type="radio" id="credit_card" name="payment_method" value="credit_card" checked class="payment-radio" aria-label="Cartão de Crédito">
             <label for="credit_card">Cartão de Crédito</label>
           </div>
 
           <div class="radio-label-group">
-            <input type="radio" id="pix" name="payment_method" value="pix" class="payment-radio">
+            <input type="radio" id="pix" name="payment_method" value="pix" class="payment-radio" aria-label="PIX">
             <label for="pix">PIX</label>
           </div>
 
           <div class="radio-label-group">
-            <input type="radio" id="boleto" name="payment_method" value="boleto" class="payment-radio">
+            <input type="radio" id="boleto" name="payment_method" value="boleto" class="payment-radio" aria-label="Boleto Bancário">
             <label for="boleto">Boleto Bancário</label>
           </div>
         </div>
 
-        <!-- Detalhes Cartão -->
-        <div id="credit-card-details" class="payment-details">
+        
+        <div id="credit-card-details" class="payment-details" aria-labelledby="credit-card-heading">
+          <h3 id="credit-card-heading" class="visually-hidden">Dados do Cartão de Crédito</h3>
           <div class="form-row2">
             <label for="card_number">Número do Cartão:</label>
-            <input type="text" id="card_number" name="card_number" placeholder="0000 0000 0000 0000" data-required="credit_card">
+            <input type="text" id="card_number" name="card_number" placeholder="0000 0000 0000 0000" data-required="credit_card" aria-describedby="card-number-error">
           </div>
 
           <div class="form-row2">
@@ -89,30 +90,32 @@
           </div>
         </div>
 
-        <!-- Detalhes PIX -->
-        <div id="pix-details" class="payment-details" style="display: none;">
+        
+        <div id="pix-details" class="payment-details" style="display: none;" aria-labelledby="pix-heading">
+          <h3 id="pix-heading" class="visually-hidden">Dados do PIX</h3>
           <p class="p-pix">
             Chave PIX (aleatória): 
-            <strong>f4a7e0f5-1234-4abc-9d3e-abcdef123456</strong>
+            <strong aria-label="Chave PIX: f4a7e0f5-1234-4abc-9d3e-abcdef123456">f4a7e0f5-1234-4abc-9d3e-abcdef123456</strong>
           </p>
           <p class="p-pix">Escaneie o QR Code ou copie a chave acima:</p>
-          <img src="{{ url_for('static', filename='image/qrcode_pix.png') }}" id="qrcode-img" alt="QR Code PIX" style="width: 200px;">
+          <img src="{{ url_for('static', filename='image/qrcode_pix.png') }}" id="qrcode-img" alt="QR Code para pagamento via PIX" style="width: 200px;">
         </div>
 
-        <!-- Detalhes Boleto -->
-        <div id="boleto-details" class="payment-details" style="display: none;">
+        
+        <div id="boleto-details" class="payment-details" style="display: none;" aria-labelledby="boleto-heading">
+          <h3 id="boleto-heading" class="visually-hidden">Dados do Boleto</h3>
           <p>O boleto será gerado após confirmar o pedido.</p>
           <p>Você poderá imprimir ou pagar pelo internet banking.</p>
         </div>
       </section>
 
-      <!-- Resumo -->
-      <section class="order-summary">
-        <h2>Resumo do Pedido</h2>
+      
+      <section class="order-summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Resumo do Pedido</h2>
 
-        <div class="order-items">
+        <div class="order-items" role="list" aria-label="Itens do pedido">
           {% for item in cart_items %}
-          <div class="order-item">
+          <div class="order-item" role="listitem" aria-label="{{ item.product_name }}: {{ item.quantity }} unidades, total R$ {{ "%.2f"|format(item.price * item.quantity) }}">
             <span class="product-name">{{ item.product_name }} ({{ item.quantity }}x)</span>
             <span class="product-price">R$ {{ "%.2f"|format(item.price * item.quantity) }}</span>
           </div>
@@ -124,12 +127,12 @@
           <span>R$ {{ "%.2f"|format(total_price) }}</span>
         </div>
 
-        <button type="submit" class="button-login2">Confirmar Pagamento</button>
+        <button type="submit" class="button-login2" aria-label="Confirmar pagamento do pedido no valor de R$ {{ "%.2f"|format(total_price) }}">Confirmar Pagamento</button>
       </section>
     </form>
   </div>
 
-  <!-- SCRIPT -->
+  
   <script>
     function togglePaymentDetails() {
         const selected = document.querySelector('input[name="payment_method"]:checked').id;
@@ -153,7 +156,7 @@
 
     window.addEventListener('DOMContentLoaded', togglePaymentDetails);
 
-    // ViaCEP Integration - Busca automática ao sair do campo CEP
+    
     document.getElementById('new_zipcode').addEventListener('blur', function() {
         const cep = this.value.replace(/\D/g, '');
         const cepStatus = document.getElementById('cep-status');
@@ -177,7 +180,6 @@
                     return;
                 }
 
-                // Preenche os campos com os dados do CEP
                 document.getElementById('new_address').value = data.logradouro || '';
                 document.getElementById('new_city').value = data.localidade || '';
                 document.getElementById('new_state').value = data.uf || '';
@@ -185,7 +187,6 @@
                 cepStatus.textContent = 'CEP encontrado!';
                 cepStatus.style.color = 'green';
 
-                // Foca automaticamente no campo do número
                 document.getElementById('new_house_number').focus();
 
                 console.log('Dados do CEP:', data);
@@ -198,7 +199,7 @@
             });
     });
 
-    // Formatação do CEP
+    
     document.getElementById('new_zipcode').addEventListener('input', function(e) {
         let value = e.target.value.replace(/\D/g, '');
         if (value.length > 5) {
@@ -206,11 +207,10 @@
         }
         e.target.value = value;
         
-        // Limpa o status quando o usuário começa a digitar novamente
         document.getElementById('cep-status').textContent = '';
     });
 
-    // Validação dos campos do cartão de crédito
+    
     document.getElementById('checkout-form').addEventListener('submit', function(e) {
         const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
         
@@ -233,7 +233,6 @@
                 return;
             }
 
-            // Validações adicionais para campos do cartão
             const cardNumber = document.getElementById('card_number').value.replace(/\s/g, '');
             const cardExpiry = document.getElementById('card_expiry').value;
             const cardCvv = document.getElementById('card_cvv').value;
@@ -258,7 +257,7 @@
         }
     });
 
-    // Formatação dos campos do cartão
+    
     document.getElementById('card_number').addEventListener('input', function(e) {
         let value = e.target.value.replace(/\D/g, '');
         value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
@@ -278,7 +277,7 @@
         e.target.value = value.substring(0, 4);
     });
 
-    // Limpar estilos de erro quando o usuário começar a digitar
+    
     document.querySelectorAll('[data-required="credit_card"]').forEach(field => {
         field.addEventListener('input', function() {
             if (this.value.trim()) {
