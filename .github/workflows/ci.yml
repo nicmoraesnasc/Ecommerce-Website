@@ -14,6 +14,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_pass
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -33,13 +45,12 @@ jobs:
           python -m py_compile src/adornsaturn/index.py
           python -m py_compile src/adornsaturn/database.py
 
-      - name: Verificar estrutura
-        run: |
-          echo "Arquivos em tests/:"
-          ls -la tests/
-          echo "Conteúdo do teste:"
-          cat tests/test_app.py
-
       - name: Executar testes
+        env:
+          PYTHONPATH: src/adornsaturn
+          DB_HOST: 127.0.0.1
+          DB_NAME: test_db
+          DB_USER: test_user
+          DB_PASSWORD: test_pass
         run: |
-          python -m pytest tests/ -v
+          pytest tests/ -v
